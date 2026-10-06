@@ -12,7 +12,7 @@
 <meta property="og:title" content="Paradox | Roblox Programmer and UI Designer">
 <meta property="og:description" content="Full-stack Roblox programmer and UI designer specializing in modular infrastructure, low-latency networking and modern interfaces.">
 <meta property="og:url" content="https://paradoxsoftwork.com/">
-<meta property="og:image" content="https://paradoxsoftwork.com/Assets/Inventory.jpg">
+<meta property="og:image" content="https://paradoxsoftwork.com/Assets/InventoryPanel.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230A0B0D'/%3E%3Cpath d='M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z' fill='%23F2F2EF'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="Assets/Logo.png">
@@ -23,18 +23,19 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Paradox","alternateName":"Paradox Softwork","url":"https://paradoxsoftwork.com/","email":"mailto:hello@paradoxsoftwork.com","jobTitle":"Roblox Programmer and UI Designer","knowsAbout":["Luau","Roblox","UI design","Networking","VFX"],"memberOf":[{"@type":"Organization","name":"REACT Studios"},{"@type":"Organization","name":"Byte-Breeze"}]}</script>
 <style>
 :root{
---Bg:#0A0B0D;--Surface:#111316;--Text:#F2F2EF;--Muted:#979BA4;--Faint:#6E737D;--Line:rgba(255,255,255,.08);--Line2:rgba(255,255,255,.16);--Accent:#6B8CFF;
+--Bg:#0A0B0D;--Surface:#111316;--Matte:#101215;--Text:#F2F2EF;--Muted:#979BA4;--Faint:#6E737D;--Line:rgba(255,255,255,.08);--Line2:rgba(255,255,255,.15);--Accent:#6B8CFF;
 --Font:"Geist",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;--Mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
---THero:clamp(2.9rem,6.6vw,8.5rem);--TDisplay:clamp(2.75rem,6.2vw,6.75rem);--TTitle:clamp(2.25rem,4.4vw,4.75rem);--TSub:clamp(1.5rem,2.4vw,2.25rem);--TLede:clamp(1.0625rem,1.35vw,1.3125rem);--TSmall:14px;
---Max:1440px;--Pad:clamp(20px,4.2vw,64px);--Gap:clamp(20px,2.2vw,32px);--Section:clamp(120px,13vw,200px);
---RImage:10px;--RControl:8px;--Ease:cubic-bezier(.22,.8,.16,1);--Swap:cubic-bezier(.65,0,.35,1)}
+--THero:clamp(2.75rem,6vw,6.75rem);--TDisplay:clamp(2.5rem,4.6vw,4.75rem);--TTitle:clamp(2.25rem,4vw,4rem);--TSub:clamp(1.375rem,2vw,1.875rem);--TLede:clamp(1.0625rem,1.25vw,1.25rem);--TSmall:14px;
+--Max:1280px;--Pad:clamp(20px,4.2vw,64px);--Gap:clamp(20px,2.2vw,32px);--Section:clamp(112px,11vw,168px);
+--Primary:1080px;--Secondary:640px;--Detail:460px;
+--RImage:6px;--RMatte:10px;--RControl:8px;--Ease:cubic-bezier(.22,.8,.16,1);--Swap:cubic-bezier(.65,0,.35,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px;scrollbar-color:#2A2D33 var(--Bg)}
 body{background:var(--Bg);color:var(--Text);font-family:var(--Font);font-size:16px;line-height:1.6;letter-spacing:-.006em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
 body.Locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-img,video{display:block;max-width:100%}
+img,video{display:block;max-width:100%;height:auto}
 ul,ol{list-style:none}
 h1,h2,h3{font-weight:600;text-wrap:balance}
 p{text-wrap:pretty}
@@ -45,21 +46,22 @@ p{text-wrap:pretty}
 .Sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .Skip:focus{position:fixed;top:12px;left:12px;z-index:100;width:auto;height:auto;clip:auto;padding:10px 16px;border-radius:var(--RControl);background:var(--Text);color:var(--Bg)}
 .Arrow{width:12px;height:12px;flex-shrink:0;transition:transform .45s var(--Ease)}
-a:hover>.Arrow,a:hover .Arrow{transform:translate(3px,-3px)}
-.Button{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 24px;border-radius:var(--RControl);background:var(--Text);color:var(--Bg);font-size:15px;font-weight:500;transition:background .3s}
+a:hover .Arrow{transform:translate(3px,-3px)}
+.Button{display:inline-flex;align-items:center;gap:12px;height:50px;padding:0 22px;border-radius:var(--RControl);background:var(--Text);color:var(--Bg);font-size:15px;font-weight:500;transition:background .3s}
 .Button:hover{background:#fff}
 .Button .Down{transform:rotate(135deg)}
 .Button:hover .Down{transform:rotate(135deg) translate(0,-3px)}
-.Line{position:relative;display:inline-flex;align-items:center;gap:10px}
-.Line::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .55s var(--Ease)}
+.Line{position:relative;display:inline-flex;align-items:center;gap:8px}
+.Line::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .55s var(--Ease)}
 .Line:hover::after{transform:scaleX(1);transform-origin:left}
-.Index{font-family:var(--Mono);font-size:13px;color:var(--Accent);letter-spacing:.02em}
+.Index{font-family:var(--Mono);font-size:13px;color:var(--Accent)}
 .Disciplines{font-family:var(--Mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--Faint)}
-.Lede{font-size:var(--TLede);line-height:1.5;letter-spacing:-.015em;color:var(--Muted)}
+.Lede{font-size:var(--TLede);line-height:1.5;letter-spacing:-.015em;color:var(--Muted);max-width:40ch}
 .Lede b{font-weight:500;color:var(--Text)}
+.Caption{margin-top:14px;font-size:14px;color:var(--Muted);max-width:52ch}
 
 .Header{position:fixed;inset:0 0 auto;z-index:50;border-bottom:1px solid transparent;transition:background .5s var(--Ease),border-color .5s}
-.Header.Solid{background:rgba(10,11,13,.76);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-color:var(--Line)}
+.Header.Solid{background:rgba(10,11,13,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-color:var(--Line)}
 .Header.MenuOpen{background:transparent;border-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
 .HeaderInner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px}
 .Brand{display:inline-flex;align-items:center;gap:12px;justify-self:start;min-height:44px;font-weight:600;font-size:17px;letter-spacing:-.02em}
@@ -83,16 +85,30 @@ a:hover>.Arrow,a:hover .Arrow{transform:translate(3px,-3px)}
 .SheetFoot{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--Muted)}
 .SheetFoot a{color:var(--Text);min-height:44px;display:inline-flex;align-items:center}
 
-.Hero{padding-top:clamp(112px,15vh,168px)}
+.Matte{position:relative;padding:clamp(10px,1.4vw,20px);background:var(--Matte);border-radius:var(--RMatte);box-shadow:inset 0 0 0 1px var(--Line)}
+.Matte .Media{border-radius:var(--RImage);overflow:hidden;background:#0D0F11}
+.Media img,.Media video{width:100%;height:auto}
+.Primary{max-width:var(--Primary)}
+.Secondary{max-width:var(--Secondary)}
+.Detail{max-width:var(--Detail)}
+.Reveal{clip-path:inset(0 0 100% 0);transition:clip-path 1.2s var(--Swap)}
+.Reveal img,.Reveal video{transform:scale(1.04);transition:transform 1.6s var(--Ease)}
+.Ready .Hero .Reveal,.In .Reveal,.Reveal.In{clip-path:inset(0 0 0 0)}
+.Ready .Hero .Reveal img,.In .Reveal img,.In .Reveal video{transform:none}
+
+.Hero{padding-top:clamp(112px,15vh,160px)}
 .HeroMeta{display:flex;justify-content:space-between;align-items:baseline;gap:24px;font-size:var(--TSmall);color:var(--Muted)}
 .HeroMeta b{font-weight:500;color:var(--Text);margin-right:14px}
 .Avail{display:inline-flex;align-items:center;gap:10px}
 .Avail i{width:6px;height:6px;border-radius:50%;background:#4ED18C}
-.HeroHead{margin-top:clamp(28px,4vw,56px);align-items:end}
-.Hero h1{grid-column:1/10;font-size:var(--THero);line-height:.92;letter-spacing:-.06em;margin-left:-.04em}
+.Hero h1{margin-top:clamp(24px,3.4vw,44px);font-size:var(--THero);line-height:.93;letter-spacing:-.058em;margin-left:-.04em}
 .Hero h1 .Dim{color:var(--Muted)}
-.HeroSide{grid-column:10/13;display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding-bottom:.6em}
-.HeroSide p{color:var(--Muted);font-size:16px;max-width:30ch}
+.HeroBody{margin-top:clamp(40px,4.4vw,64px);align-items:start}
+.HeroText{grid-column:1/5;display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding-top:clamp(8px,1.4vw,20px)}
+.HeroText p{color:var(--Muted);max-width:32ch}
+.HeroFigure{grid-column:6/13;justify-self:end;width:100%;max-width:780px}
+.HeroFigure figcaption{margin-top:12px;font-size:13px;color:var(--Faint);text-align:right}
+.HeroFigure figcaption b{font-weight:500;color:var(--Muted);margin-right:8px}
 .Mask{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 .Mask>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--Ease)}
 .Ready .Mask>span{transform:none}
@@ -100,162 +116,138 @@ a:hover>.Arrow,a:hover .Arrow{transform:translate(3px,-3px)}
 .Enter{opacity:0;transform:translateY(14px);transition:opacity .9s var(--Ease),transform .9s var(--Ease)}
 .Ready .Enter{opacity:1;transform:none}
 .Ready .Enter.D1{transition-delay:.3s}.Ready .Enter.D2{transition-delay:.45s}
-.HeroVisual{margin-top:clamp(48px,6vw,88px);align-items:start}
-.HeroMain{grid-column:1/9}
-.HeroStack{grid-column:9/13;display:flex;flex-direction:column;gap:var(--Gap);margin-top:clamp(40px,6vw,96px)}
-.HeroVisual figcaption{margin-top:12px;font-size:13px;color:var(--Faint)}
-.HeroVisual figcaption b{font-weight:500;color:var(--Muted);margin-right:8px}
-
-.Shot{position:relative;overflow:hidden;border-radius:var(--RImage);background:var(--Surface);box-shadow:0 0 0 1px var(--Line)}
-.Shot img,.Shot video{width:100%;height:100%;object-fit:cover}
-.Reveal{clip-path:inset(0 0 100% 0);transition:clip-path 1.2s var(--Swap)}
-.Reveal img,.Reveal video{transform:scale(1.07);transition:transform 1.6s var(--Ease)}
-.Ready .Hero .Reveal,.In .Reveal,.Reveal.In{clip-path:inset(0 0 0 0)}
-.Ready .Hero .Reveal img,.In .Reveal img,.In .Reveal video{transform:none}
-.Ready .HeroStack figure:nth-child(1) .Reveal,.Ready .HeroStack figure:nth-child(1) img{transition-delay:.2s}
-.Ready .HeroStack figure:nth-child(2) .Reveal,.Ready .HeroStack figure:nth-child(2) img{transition-delay:.35s}
-.Zoom img,.Zoom video{transition:transform 1.2s var(--Ease)}
-.Zoom:hover img,.Zoom:hover video{transform:scale(1.02)}
-.R16x9{aspect-ratio:16/9}.RPanel{aspect-ratio:960/540}.RDown{aspect-ratio:1040/600}.RHeart{aspect-ratio:1040/588}.RInv{aspect-ratio:1280/822}.RVit{aspect-ratio:1280/796}.RShow{aspect-ratio:720/480}
 
 .Work{padding-top:var(--Section)}
-.WorkIntro{align-items:end;padding-bottom:clamp(72px,9vw,140px)}
-.WorkIntro h2{grid-column:1/8;font-size:var(--TDisplay);line-height:.92;letter-spacing:-.06em}
-.WorkIntro p{grid-column:9/13;color:var(--Muted);max-width:36ch}
-.Project+.Project{margin-top:clamp(140px,16vw,240px)}
-.Project h3{font-size:var(--TDisplay);line-height:.92;letter-spacing:-.06em}
+.WorkIntro{align-items:end;padding-bottom:clamp(72px,8vw,120px);border-bottom:1px solid var(--Line)}
+.WorkIntro h2{grid-column:1/8;font-size:var(--TDisplay);line-height:.95;letter-spacing:-.055em}
+.WorkIntro p{grid-column:9/13;color:var(--Muted)}
+.Project{padding-top:clamp(88px,9vw,136px)}
+.Project h3,.InkMain h3,.OssMain h3{font-size:var(--TDisplay);line-height:.95;letter-spacing:-.055em}
 .Meta{display:grid;font-size:15px}
-.Meta div{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--Line)}
+.Meta div{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--Line)}
 .Meta dt{color:var(--Faint)}
-.Meta dd{color:var(--Text)}
-.Caption{margin-top:14px;font-size:14px;color:var(--Muted)}
 
-.InvHead{align-items:end;margin-bottom:clamp(36px,4.4vw,64px)}
+.InvHead{align-items:end;margin-bottom:clamp(40px,4.4vw,64px)}
 .InvHead>div:first-child{grid-column:1/8}
-.InvHead h3{margin-top:22px}
-.InvHead .Copy{grid-column:9/13;display:flex;flex-direction:column;gap:18px}
-.Bleed{--W:min(calc(100vw - var(--Pad)),1680px);width:var(--W);margin-left:calc(50% - var(--W) / 2)}
-.MetaRow{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--Gap);margin-top:clamp(28px,3vw,44px)}
+.InvHead h3{margin-top:20px}
+.InvHead .Copy{grid-column:9/13;display:flex;flex-direction:column;gap:16px}
+.InvMain{margin:0 auto}
+.MetaRow{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--Gap);max-width:var(--Primary);margin:clamp(28px,3vw,40px) auto 0}
 .MetaRow div{grid-template-columns:1fr;gap:4px}
-.InvDetails{grid-template-columns:1.5fr 1.778fr;display:grid;gap:var(--Gap);margin-top:clamp(64px,7vw,112px)}
+.InvSupport{margin-top:clamp(72px,7vw,112px);align-items:center}
+.InvSupport figure{grid-column:1/7}
+.InvSupport .Note{grid-column:8/12}
+.Note h4{font-size:var(--TSub);font-weight:500;letter-spacing:-.035em;line-height:1.15}
+.Note p{margin-top:14px;color:var(--Muted);max-width:38ch}
 
 .Vit{align-items:start}
-.VitMedia{grid-column:1/9;grid-row:1}
-.VitText{grid-column:10/13;grid-row:1;position:sticky;top:120px;display:flex;flex-direction:column;gap:22px}
-.VitText h3{margin-top:2px}
-.VitText .Meta{margin-top:8px}
-.VitStills{grid-column:1/13;grid-row:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--Gap);margin-top:clamp(56px,6vw,96px);align-items:start}
-.VitStills figure{grid-column:1/8}
-.VitNote{grid-column:9/13;align-self:end;font-size:var(--TLede);line-height:1.45;letter-spacing:-.015em;color:var(--Muted);padding-bottom:40px}
-.VitNote b{font-weight:500;color:var(--Text)}
+.VitText{grid-column:1/5;grid-row:1;display:flex;flex-direction:column;gap:20px;position:sticky;top:120px}
+.VitText .Meta{margin-top:6px}
+.VitPrimary{grid-column:6/13;grid-row:1;justify-self:end;width:100%}
+.VitSupport{grid-column:1/13;grid-row:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--Gap);margin-top:clamp(64px,7vw,104px);align-items:start}
+.VitSupport figure:first-child{grid-column:1/7}
+.VitSupport figure:last-child{grid-column:8/13;justify-self:start;width:100%;margin-top:clamp(40px,6vw,96px)}
 
-.Ink{border-top:1px solid var(--Line);padding-top:clamp(40px,4vw,56px)}
-.InkTop{display:flex;justify-content:space-between;align-items:baseline;gap:24px}
-.InkWord{font-size:clamp(4.5rem,15vw,16rem)!important;line-height:.82!important;letter-spacing:-.075em!important;margin:clamp(24px,3vw,40px) 0 0 -.05em;padding-bottom:.08em;border-bottom:1px solid var(--Line2)}
-.InkWord i{display:inline-block;width:.04em;height:.74em;margin-left:.05em;background:var(--Accent);vertical-align:-.02em;animation:Blink 1.1s steps(1) infinite}
+.Ink{margin-top:clamp(88px,9vw,136px);padding-top:clamp(48px,5vw,72px);border-top:1px solid var(--Line);align-items:start}
+.InkMain{grid-column:1/7;display:flex;flex-direction:column;gap:20px}
+.InkMain h3 i{display:inline-block;width:.05em;height:.76em;margin-left:.06em;background:var(--Accent);vertical-align:-.03em;animation:Blink 1.1s steps(1) infinite}
 @keyframes Blink{50%{opacity:0}}
-.InkBody{margin-top:clamp(28px,3vw,44px);align-items:start}
-.InkBody .Lede{grid-column:1/7;color:var(--Text);font-size:clamp(1.375rem,2.2vw,2rem);line-height:1.25;letter-spacing:-.03em}
-.InkBody .Meta{grid-column:8/13}
+.InkSide{grid-column:8/13;display:flex;flex-direction:column;gap:24px;padding-top:6px}
 
-.Oss{position:relative;margin-top:clamp(140px,16vw,240px);background:var(--Surface);border-top:1px solid var(--Line);border-bottom:1px solid var(--Line);overflow:hidden}
-.Oss::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--Line) 1px,transparent 1px);background-size:100% 64px;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000);mask-image:linear-gradient(90deg,transparent 30%,#000);pointer-events:none}
-.OssInner{position:relative;padding-top:clamp(88px,10vw,160px);padding-bottom:clamp(88px,10vw,160px);align-items:end}
-.OssInner>div:first-child{grid-column:1/8}
-.OssTop{display:flex;gap:16px;align-items:baseline}
-.OssTop span:last-child{font-size:var(--TSmall);color:var(--Muted)}
-.OssInner h3{font-size:clamp(3.25rem,8.4vw,9rem);line-height:.88;letter-spacing:-.065em;margin-top:22px}
-.OssInner .Lede{margin-top:22px;color:var(--Text)}
-.OssInner .Button{margin-top:40px}
-.Spec{grid-column:9/13}
-.Spec div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--Line2);font-size:15px}
+.Oss{margin-top:clamp(104px,10vw,152px);background:var(--Surface);border-top:1px solid var(--Line);border-bottom:1px solid var(--Line)}
+.OssInner{padding-top:clamp(64px,7vw,104px);padding-bottom:clamp(64px,7vw,104px);align-items:start}
+.OssMain{grid-column:1/7;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.OssTop{display:flex;gap:14px;align-items:baseline;font-size:var(--TSmall);color:var(--Muted)}
+.OssMain .Button{margin-top:12px}
+.Spec{grid-column:8/13;font-size:15px}
+.Spec div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--Line2)}
 .Spec div:last-child{border-bottom:1px solid var(--Line2)}
 .Spec dt{color:var(--Muted)}
 .Spec dd{font-weight:500;text-align:right}
 
 .Experience{padding-top:var(--Section)}
-.ExpHead{align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.ExpHead{align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .ExpHead h2{grid-column:1/8;font-size:var(--TTitle);line-height:.95;letter-spacing:-.05em}
 .ExpHead p{grid-column:9/13;color:var(--Muted)}
 .Rows{border-top:1px solid var(--Line2)}
-.Rows a{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,2fr) 24px;gap:var(--Gap);align-items:baseline;padding:clamp(24px,2.6vw,36px) 0;border-bottom:1px solid var(--Line2);isolation:isolate}
-.Rows a::before{content:"";position:absolute;inset:0 calc(var(--Pad) * -1);background:var(--Surface);transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--Ease);z-index:-1}
+.Rows a{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,2fr) 24px;gap:var(--Gap);align-items:baseline;padding:clamp(24px,2.4vw,32px) 0;border-bottom:1px solid var(--Line2);isolation:isolate}
+.Rows a::before{content:"";position:absolute;inset:0 calc(var(--Pad) * -.5);background:var(--Surface);transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--Ease);z-index:-1;border-radius:4px}
 .Rows a:hover::before{transform:scaleY(1)}
-.RowName{font-size:clamp(1.75rem,3.4vw,3.25rem);font-weight:500;letter-spacing:-.05em;line-height:1;transition:transform .6s var(--Ease)}
+.RowName{font-size:clamp(1.75rem,3vw,2.75rem);font-weight:500;letter-spacing:-.05em;line-height:1;transition:transform .6s var(--Ease)}
 .Rows a:hover .RowName{transform:translateX(10px)}
-.RowRole{font-size:16px}
 .RowKind{font-size:var(--TSmall);color:var(--Muted)}
 .Rows .Arrow{justify-self:end;color:var(--Muted)}
 
 .Craft{padding-top:var(--Section)}
-.CraftHead h2{font-size:var(--TTitle);line-height:.95;letter-spacing:-.05em;max-width:22ch}
-.CraftHead h2 span{color:var(--Muted)}
-.Sides{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,4vw,72px);margin-top:clamp(56px,7vw,104px)}
+.Craft h2{font-size:var(--TTitle);line-height:.95;letter-spacing:-.05em;max-width:22ch}
+.Craft h2 span{color:var(--Muted)}
+.Sides{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(32px,5vw,80px);max-width:960px;margin:clamp(56px,6vw,96px) auto 0}
 .Side{display:flex;flex-direction:column}
 .Side:first-child{align-items:flex-end;text-align:right}
 .Side p{font-size:var(--TSmall);color:var(--Faint);margin-bottom:16px}
-.Side li{font-size:clamp(1.75rem,3.4vw,3.25rem);line-height:1.12;letter-spacing:-.045em;font-weight:500;color:var(--Muted);transition:color .4s}
+.Side li{font-size:clamp(1.625rem,2.8vw,2.75rem);line-height:1.14;letter-spacing:-.045em;font-weight:500;color:var(--Muted);transition:color .4s}
 .Side li:hover{color:var(--Text)}
 .Divide{width:1px;background:linear-gradient(transparent,var(--Line2) 18%,var(--Line2) 82%,transparent)}
-.CraftNote{max-width:54ch;margin:clamp(48px,6vw,88px) auto 0;text-align:center}
+.CraftNote{max-width:52ch;margin:clamp(48px,5vw,80px) auto 0;text-align:center}
 
 .Principles{padding-top:var(--Section);align-items:start}
-.PrinciplesHead{grid-column:1/5;position:sticky;top:120px;display:flex;flex-direction:column;gap:18px}
+.PrinciplesHead{grid-column:1/5;position:sticky;top:120px;display:flex;flex-direction:column;gap:16px}
 .PrinciplesHead h2{font-size:var(--TSub);letter-spacing:-.035em;line-height:1.1;font-weight:500}
 .PrinciplesHead p{color:var(--Muted);max-width:30ch}
 .PrincipleList{grid-column:6/13}
-.PrincipleList li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--Gap);align-items:baseline;padding:clamp(24px,2.6vw,36px) 0;border-top:1px solid var(--Line)}
+.PrincipleList li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--Gap);align-items:baseline;padding:clamp(22px,2.4vw,32px) 0;border-top:1px solid var(--Line)}
 .PrincipleList li:last-child{border-bottom:1px solid var(--Line)}
-.PrincipleList h3{font-size:clamp(1.75rem,3.2vw,3rem);letter-spacing:-.05em;line-height:1;font-weight:500}
+.PrincipleList h3{font-size:clamp(1.625rem,2.6vw,2.5rem);letter-spacing:-.05em;line-height:1;font-weight:500}
 .PrincipleList p{color:var(--Muted)}
 
 .About{padding-top:var(--Section)}
 .About h2{font-size:var(--TSmall);font-weight:400;color:var(--Muted);grid-column:1/4}
-.Story{grid-column:4/13;font-size:clamp(1.625rem,3vw,3rem);line-height:1.2;letter-spacing:-.04em;font-weight:500}
+.Story{grid-column:4/12;font-size:clamp(1.5rem,2.6vw,2.625rem);line-height:1.22;letter-spacing:-.04em;font-weight:500}
 .Story span{color:var(--Muted)}
-.AboutFoot{grid-column:4/13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--Gap);margin-top:clamp(48px,6vw,88px);padding-top:24px;border-top:1px solid var(--Line);color:var(--Muted)}
+.AboutFoot{grid-column:4/12;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--Gap);margin-top:clamp(48px,5vw,80px);padding-top:24px;border-top:1px solid var(--Line);color:var(--Muted)}
 .AboutFoot b{display:block;font-weight:500;color:var(--Text);margin-bottom:6px}
 
 .Contact{padding-top:var(--Section)}
-.Contact h2{font-size:clamp(3.25rem,9.6vw,10.5rem);line-height:.88;letter-spacing:-.068em}
+.Contact h2{font-size:clamp(2.75rem,min(7.6vw,12.5vh),7.75rem);line-height:.92;letter-spacing:-.062em;max-width:16ch}
 .Contact h2 span{display:block;color:var(--Muted)}
-.Mail{display:inline-flex;align-items:center;gap:.35em;margin-top:clamp(48px,6vw,88px);font-size:clamp(1.5rem,4.2vw,4rem);font-weight:500;letter-spacing:-.05em;line-height:1.1;position:relative;overflow-wrap:anywhere}
+.Mail{display:inline-flex;align-items:center;gap:.35em;margin-top:clamp(40px,5vw,72px);font-size:clamp(1.5rem,3.4vw,3.25rem);font-weight:500;letter-spacing:-.05em;line-height:1.1;position:relative;overflow-wrap:anywhere}
 .Mail .Arrow{width:.5em;height:.5em;color:var(--Accent)}
-.Mail::after{content:"";position:absolute;left:0;right:0;bottom:-.12em;height:2px;background:var(--Line2)}
-.Mail::before{content:"";position:absolute;left:0;right:0;bottom:-.12em;height:2px;background:var(--Text);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--Ease);z-index:1}
+.Mail::after{content:"";position:absolute;left:0;right:0;bottom:-.14em;height:2px;background:var(--Line2)}
+.Mail::before{content:"";position:absolute;left:0;right:0;bottom:-.14em;height:2px;background:var(--Text);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--Ease);z-index:1}
 .Mail:hover::before{transform:scaleX(1)}
 .ContactNote{margin-top:28px;color:var(--Muted)}
 
-.Footer{margin-top:clamp(120px,12vw,184px);border-top:1px solid var(--Line)}
+.Footer{margin-top:clamp(112px,11vw,168px);border-top:1px solid var(--Line)}
 .FooterInner{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom));font-size:var(--TSmall);color:var(--Muted)}
 .FooterInner nav{display:flex;gap:28px}
-.FooterInner a{min-height:44px;display:inline-flex;align-items:center;gap:8px;transition:color .3s}
+.FooterInner a{min-height:44px;transition:color .3s}
 .FooterInner a:hover{color:var(--Text)}
 .FooterInner .Brand{color:var(--Text);font-size:15px}
 
-.Up{opacity:0;transform:translateY(28px);transition:opacity 1s var(--Ease),transform 1s var(--Ease)}
+.Up{opacity:0;transform:translateY(24px);transition:opacity 1s var(--Ease),transform 1s var(--Ease)}
 .Up.In{opacity:1;transform:none}
 
 @media (max-width:1100px){
-.Hero h1{grid-column:1/13}
-.HeroSide{grid-column:1/13;flex-direction:row;align-items:center;justify-content:space-between;margin-top:32px;padding:0}
-.HeroMain{grid-column:1/13}
-.HeroStack{grid-column:1/13;display:grid;grid-template-columns:1fr 1fr;margin-top:var(--Gap)}
-.WorkIntro h2,.WorkIntro p,.InvHead>div:first-child,.InvHead .Copy,.ExpHead h2,.ExpHead p,.OssInner>div:first-child,.Spec{grid-column:1/13}
-.WorkIntro p,.InvHead .Copy,.ExpHead p{margin-top:24px}
-.Spec{margin-top:56px;max-width:560px}
-.VitMedia,.VitText{grid-column:1/13;grid-row:auto}
-.VitStills{grid-row:auto}
-.VitText{position:static;order:-1;margin-bottom:clamp(32px,4vw,48px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--Gap)}
+.HeroText{grid-column:1/13;flex-direction:row;align-items:center;justify-content:space-between}
+.HeroFigure{grid-column:1/13;justify-self:start;margin-top:40px;max-width:none}
+.HeroFigure figcaption{text-align:left}
+.WorkIntro h2,.WorkIntro p,.InvHead>div:first-child,.InvHead .Copy,.ExpHead h2,.ExpHead p,.OssMain,.Spec,.InkMain,.InkSide{grid-column:1/13}
+.WorkIntro p,.InvHead .Copy,.ExpHead p,.InkSide{margin-top:24px}
+.Spec{margin-top:48px;max-width:560px}
+.MetaRow{grid-template-columns:repeat(2,minmax(0,1fr))}
+.InvSupport figure,.InvSupport .Note{grid-column:1/13}
+.InvSupport .Note{margin-top:28px}
+.VitText,.VitPrimary,.VitSupport{grid-column:1/13;grid-row:auto}
+.VitText{position:static;margin-bottom:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--Gap)}
 .VitText>*{grid-column:1}
 .VitText .Meta{grid-column:2;grid-row:1/5;margin:0}
-.InkBody .Lede,.InkBody .Meta{grid-column:1/13}
-.InkBody .Meta{margin-top:32px}
+.VitPrimary{justify-self:start;max-width:var(--Secondary)}
+.VitSupport figure:first-child,.VitSupport figure:last-child{grid-column:1/13;margin-top:0}
+.VitSupport{row-gap:48px}
 .PrinciplesHead,.PrincipleList{grid-column:1/13}
 .PrinciplesHead{position:static;margin-bottom:40px}
 .About h2{grid-column:1/13;margin-bottom:20px}
 .Story,.AboutFoot{grid-column:1/13}
-.MetaRow{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
 .Nav,.Talk{display:none}
@@ -263,25 +255,14 @@ a:hover>.Arrow,a:hover .Arrow{transform:translate(3px,-3px)}
 .HeaderInner{grid-template-columns:1fr auto;height:64px}
 .HeroMeta{flex-direction:column;gap:4px}
 .HeroMeta p:first-child span{display:block}
-.Hero h1{font-size:clamp(2.75rem,12.6vw,5rem)}
-.HeroSide{flex-direction:column;align-items:flex-start;gap:24px}
-.HeroMain{margin-left:calc(var(--Pad) * -1);margin-right:calc(var(--Pad) * -1)}
-.HeroMain .Shot{border-radius:0;box-shadow:none}
-.HeroMain figcaption{padding:0 var(--Pad)}
-.Bleed{width:100vw;margin-left:calc(50% - 50vw)}
-.Bleed.Shot{border-radius:0;box-shadow:none}
-.InvDetails{grid-template-columns:1fr;gap:40px}
+.Hero h1{font-size:clamp(2.6rem,12.4vw,4.5rem)}
+.HeroText{flex-direction:column;align-items:flex-start}
+.MetaRow{grid-template-columns:1fr}
 .VitText{display:flex}
-.VitStills figure,.VitNote{grid-column:1/13}
-.VitNote{padding:0}
-.VitStills{row-gap:40px}
-.VitMedia{margin-left:calc(var(--Pad) * -1);margin-right:calc(var(--Pad) * -1)}
-.VitMedia .Shot{border-radius:0;box-shadow:none}
-.VitMedia .Caption{padding:0 var(--Pad)}
-.InkTop{flex-direction:column;gap:6px}
+.VitSupport figure:first-child,.VitSupport figure:last-child{grid-column:1/13;margin-top:0}
+.VitSupport{row-gap:48px}
 .Rows a{grid-template-columns:1fr 24px;gap:8px 16px}
-.RowName{grid-column:1}
-.RowRole,.RowKind{grid-column:1}
+.RowName,.RowRole,.RowKind{grid-column:1}
 .Rows .Arrow{grid-column:2;grid-row:1}
 .Sides{grid-template-columns:1fr;gap:28px}
 .Side:first-child{align-items:flex-start;text-align:left}
@@ -289,9 +270,9 @@ a:hover>.Arrow,a:hover .Arrow{transform:translate(3px,-3px)}
 .CraftNote{text-align:left;margin-left:0}
 .PrincipleList li{grid-template-columns:1fr;gap:10px}
 .AboutFoot{grid-template-columns:1fr}
-.MetaRow{grid-template-columns:1fr}
 .FooterInner{flex-direction:column;align-items:flex-start;gap:0}
 .FooterInner nav{flex-wrap:wrap;gap:0 24px}
+.FooterInner nav a{display:inline-flex;align-items:center}
 }
 @media (prefers-reduced-motion:reduce){
 html{scroll-behavior:auto}
@@ -343,28 +324,16 @@ html{scroll-behavior:auto}
 <p><b>Paradox</b><span>Full-stack Roblox programmer and UI designer</span></p>
 <p class="Avail"><i aria-hidden="true"></i>Available for selected commissions</p>
 </div>
-<div class="Grid HeroHead">
 <h1 id="HeroTitle"><span class="Mask"><span>Clean systems.</span></span><span class="Mask"><span class="Dim">Sharp interfaces.</span></span></h1>
-<div class="HeroSide Enter D1">
+<div class="Grid HeroBody">
+<div class="HeroText Enter D1">
 <p>I build modular infrastructure, low-latency networking and the interfaces that sit on top of them.</p>
 <a class="Button" href="#Work">View selected work<svg class="Arrow Down" aria-hidden="true"><use href="#ArrowIcon"/></svg></a>
 </div>
-</div>
-<div class="Grid HeroVisual">
-<figure class="HeroMain">
-<div class="Shot RPanel Reveal"><img src="Assets/InventoryPanel.jpg" width="960" height="540" fetchpriority="high" alt="Realistic Inventory panel with worn gear slots, the duty belt contents and a selected 9mm magazine with Hold, Use and Drop actions"></div>
+<figure class="HeroFigure Enter D2">
+<div class="Matte"><div class="Media Reveal"><img src="Assets/InventoryPanel.jpg" width="960" height="540" fetchpriority="high" alt="Realistic Inventory panel with worn gear slots, the duty belt contents and a selected 9mm magazine with Hold, Use and Drop actions"></div></div>
 <figcaption><b>Realistic Inventory</b>On you panel</figcaption>
 </figure>
-<div class="HeroStack">
-<figure>
-<div class="Shot RDown Reveal"><img src="Assets/VitalsDown.jpg" width="1040" height="600" alt="Vital downed card reading You are down, listing a bleeding left thigh and blood loss"></div>
-<figcaption><b>Vital</b>Downed state</figcaption>
-</figure>
-<figure>
-<div class="Shot RHeart Reveal"><img src="Assets/VitalsHeart.jpg" width="1040" height="588" alt="Vital cardiac arrest screen with a flatlining heart trace and a 3:56 countdown"></div>
-<figcaption><b>Vital</b>Heart stopped</figcaption>
-</figure>
-</div>
 </div>
 </div>
 </section>
@@ -373,7 +342,7 @@ html{scroll-behavior:auto}
 <div class="Wrap">
 <div class="Grid WorkIntro">
 <h2 id="WorkTitle" class="Up">Selected work</h2>
-<p class="Up">Four projects for Roblox, each designed and programmed end to end. The footage is captured in Roblox Studio.</p>
+<p class="Up">Four projects for Roblox, each designed and programmed end to end. Footage is captured in Roblox Studio.</p>
 </div>
 
 <article class="Project" aria-labelledby="InventoryTitle">
@@ -384,8 +353,8 @@ html{scroll-behavior:auto}
 <p class="Disciplines">Programming / UI design</p>
 </div>
 </div>
-<figure class="Up">
-<div class="Shot Bleed RInv Reveal Zoom"><video data-play muted loop playsinline preload="none" poster="Assets/Inventory.jpg" width="1280" height="822" aria-label="Realistic Inventory in use: opening the On you panel, switching between pockets and the duty belt, and selecting items"><source src="Assets/Inventory.webm" type="video/webm"><source src="Assets/Inventory.mp4" type="video/mp4"></video></div>
+<figure class="InvMain Primary Up">
+<div class="Matte"><div class="Media Reveal"><video data-play muted loop playsinline preload="none" poster="Assets/Inventory.jpg" width="1280" height="822" aria-label="Realistic Inventory in use: opening the On you panel, switching between pockets and the duty belt, and selecting items"><source src="Assets/Inventory.webm" type="video/webm"><source src="Assets/Inventory.mp4" type="video/mp4"></video></div></div>
 </figure>
 <dl class="Meta MetaRow Up">
 <div><dt>Role</dt><dd>Programming and UI design</dd></div>
@@ -393,15 +362,14 @@ html{scroll-behavior:auto}
 <div><dt>Platform</dt><dd>Roblox</dd></div>
 <div><dt>Focus</dt><dd>Interaction, architecture, interface design</dd></div>
 </dl>
-<div class="InvDetails">
-<figure class="Up">
-<div class="Shot RShow Reveal Zoom"><img src="Assets/InventoryShowcase.jpg" width="720" height="480" loading="lazy" decoding="async" alt="Staff Showcase panel with Civilian, Patrol officer, SRT operator and Medic loadouts beside a searchable item catalog"></div>
-<figcaption class="Caption">Staff showcase. Loadouts on the left, a searchable catalog on the right.</figcaption>
+<div class="Grid InvSupport">
+<figure class="Secondary Up">
+<div class="Matte"><div class="Media Reveal"><img src="Assets/InventoryShowcase.jpg" width="720" height="480" loading="lazy" decoding="async" alt="Staff Showcase panel with Civilian, Patrol officer, SRT operator and Medic loadouts beside a searchable item catalog"></div></div>
 </figure>
-<figure class="Up">
-<div class="Shot RPanel Reveal Zoom"><img src="Assets/InventoryBackpack.jpg" width="960" height="540" loading="lazy" decoding="async" alt="On you panel with a backpack worn in the back slot and Pepper Spray selected in the item detail column"></div>
-<figcaption class="Caption">A backpack worn in the back slot, with the selected item's details on the right.</figcaption>
-</figure>
+<div class="Note Up">
+<h4>Staff showcase</h4>
+<p>Loadouts on one side and a searchable item catalog on the other, built on the same inventory system.</p>
+</div>
 </div>
 </article>
 
@@ -417,24 +385,30 @@ html{scroll-behavior:auto}
 <div><dt>Focus</dt><dd>Player state, feedback, HUD</dd></div>
 </dl>
 </div>
-<figure class="VitMedia Up">
-<div class="Shot RVit Reveal Zoom"><video data-play muted loop playsinline preload="none" poster="Assets/Vitals.jpg" width="1280" height="796" aria-label="Vital in use: a player goes down from bleeding, becomes unresponsive and enters cardiac arrest"><source src="Assets/Vitals.webm" type="video/webm"><source src="Assets/Vitals.mp4" type="video/mp4"></video></div>
-<figcaption class="Caption">Downed, unresponsive and cardiac arrest, captured in Studio.</figcaption>
+<figure class="VitPrimary Up">
+<div class="Matte"><div class="Media Reveal"><img src="Assets/VitalsHeart.jpg" width="760" height="430" loading="lazy" decoding="async" alt="Vital cardiac arrest screen with a flatlining heart trace, the line Your heart has stopped and a 3:56 countdown"></div></div>
+<figcaption class="Caption">Heart stopped. A live trace and a countdown before the life ends.</figcaption>
 </figure>
-<div class="VitStills">
-<figure class="Up">
-<div class="Shot RHeart Reveal Zoom"><img src="Assets/VitalsPulse.jpg" width="1040" height="588" loading="lazy" decoding="async" alt="Unresponsive screen with a live heart trace and the line Your heart is still beating"></div>
-<figcaption class="Caption">Unresponsive. The heart trace keeps running.</figcaption>
+<div class="VitSupport">
+<figure class="Secondary Up">
+<div class="Matte"><div class="Media Reveal"><video data-play muted loop playsinline preload="none" poster="Assets/Vitals.jpg" width="1280" height="796" aria-label="Vital in use: a player goes down from bleeding, becomes unresponsive and enters cardiac arrest"><source src="Assets/Vitals.webm" type="video/webm"><source src="Assets/Vitals.mp4" type="video/mp4"></video></div></div>
+<figcaption class="Caption">The full sequence in Studio: downed, unresponsive, then cardiac arrest.</figcaption>
 </figure>
-<p class="VitNote Up">Each state the player can reach has its own screen: <b>downed, unresponsive and heart stopped</b>, each telling the player what is happening and what they can still do.</p>
+<figure class="Detail Up">
+<div class="Matte"><div class="Media Reveal"><img src="Assets/VitalsDown.jpg" width="560" height="320" loading="lazy" decoding="async" alt="Downed card listing a bleeding left thigh and blood loss, each with guidance for the player"></div></div>
+<figcaption class="Caption">Every condition comes with an instruction the player can act on.</figcaption>
+</figure>
 </div>
 </article>
 
-<article class="Project Ink" aria-labelledby="InkwellTitle">
-<div class="InkTop Up"><span class="Index">03</span><p class="Disciplines">Programming / UI design</p></div>
-<h3 id="InkwellTitle" class="InkWord Up">Inkwell<i aria-hidden="true"></i></h3>
-<div class="Grid InkBody">
+<article class="Grid Ink" aria-labelledby="InkwellTitle">
+<div class="InkMain">
+<span class="Index Up">03</span>
+<h3 id="InkwellTitle" class="Up">Inkwell<i aria-hidden="true"></i></h3>
 <p class="Lede Up">Custom input infrastructure for Roblox, built beyond the default TextBox behavior.</p>
+</div>
+<div class="InkSide">
+<p class="Disciplines Up">Programming / UI design</p>
 <dl class="Meta Up">
 <div><dt>Type</dt><dd>Text input infrastructure</dd></div>
 <div><dt>Platform</dt><dd>Roblox</dd></div>
@@ -446,7 +420,7 @@ html{scroll-behavior:auto}
 
 <article class="Oss" id="OpenSource" aria-labelledby="OssTitle">
 <div class="Wrap Grid OssInner">
-<div>
+<div class="OssMain">
 <p class="OssTop Up"><span class="Index">04</span><span>Open source</span></p>
 <h3 id="OssTitle" class="Up">LuauChart</h3>
 <p class="Lede Up">Graph and chart rendering for Luau, released free for anyone building Roblox interfaces.</p>
@@ -479,7 +453,7 @@ html{scroll-behavior:auto}
 
 <section class="Craft" aria-labelledby="CraftTitle">
 <div class="Wrap">
-<div class="CraftHead"><h2 id="CraftTitle" class="Up">Design and engineering, <span>one pair of hands.</span></h2></div>
+<h2 id="CraftTitle" class="Up">Design and engineering, <span>one pair of hands.</span></h2>
 <div class="Sides">
 <div class="Side Up"><p>Design</p><ul><li>Interface</li><li>Interaction</li><li>Typography</li><li>Visual systems</li></ul></div>
 <div class="Divide" aria-hidden="true"></div>
@@ -558,7 +532,7 @@ OnScroll();
 
 const Videos=QA("video[data-play]");
 if(Reduced)Videos.forEach(V=>{V.controls=true});
-else{const Player=new IntersectionObserver(Entries=>Entries.forEach(E=>{const V=E.target;if(E.isIntersecting)V.play().catch(()=>{V.controls=true});else V.pause()}),{threshold:.25});Videos.forEach(V=>Player.observe(V))}
+else{const Player=new IntersectionObserver(Entries=>Entries.forEach(E=>{const V=E.target;if(E.isIntersecting)V.play().catch(()=>{V.controls=true});else V.pause()}),{threshold:.5});Videos.forEach(V=>Player.observe(V))}
 
 const Sheet=Q("#Sheet"),MenuButton=Q("#MenuButton");
 const SetMenu=Open=>{Sheet.classList.toggle("Open",Open);Sheet.inert=!Open;Header.classList.toggle("MenuOpen",Open);MenuButton.setAttribute("aria-expanded",Open);document.body.classList.toggle("Locked",Open);if(Open)setTimeout(()=>Sheet.querySelector("a").focus({preventScroll:true}),300)};
