@@ -4,410 +4,399 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Paradox</title>
-<meta name="description" content="Paradox is a full stack Roblox programmer and professional UI designer, specializing in modular infrastructure and low latency networking.">
-<meta name="theme-color" content="#000000">
+<meta name="description" content="Paradox is a full stack Roblox programmer and UI designer, specializing in modular infrastructure and low latency networking.">
+<meta name="theme-color" content="#ECEAE4">
 <meta property="og:title" content="Paradox">
-<meta property="og:description" content="Full stack Roblox programmer and professional UI designer.">
+<meta property="og:description" content="Full stack Roblox programmer and UI designer.">
 <meta property="og:url" content="https://paradoxsoftwork.com">
 <meta property="og:image" content="https://paradoxsoftwork.com/Assets/Logo.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23000'/%3E%3Cpath d='M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="Assets/Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..700&display=swap" rel="stylesheet">
 <style>
-:root{--Bg:#000;--Surface:#0E0E0F;--Raised:#161617;--Line:rgba(255,255,255,.09);--Text:#F5F5F7;--Dim:#A1A1A6;--Mute:#6E6E73;--Link:#2997FF;--Font:"Onest",-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;--Mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--Max:1100px;--Gutter:clamp(20px,5vw,44px);--Ease:cubic-bezier(.25,.1,.15,1)}
+:root{--Paper:#ECEAE4;--Ink:#0D0D0D;--Bg:var(--Paper);--Fg:var(--Ink);--Soft:rgba(13,13,13,.55);--Rule:rgba(13,13,13,.16);--Display:"Funnel Display",sans-serif;--Text:"Funnel Sans",-apple-system,"Helvetica Neue",sans-serif;--Gutter:clamp(18px,3vw,40px);--Ease:cubic-bezier(.65,0,.15,1);--Out:cubic-bezier(.16,1,.3,1)}
+body[data-theme="Dark"]{--Bg:var(--Ink);--Fg:var(--Paper);--Soft:rgba(236,234,228,.5);--Rule:rgba(236,234,228,.14)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
-body{background:var(--Bg);color:var(--Text);font-family:var(--Font);font-size:17px;line-height:1.47;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--Bg);color:var(--Fg);font-family:var(--Text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;transition:background-color .8s var(--Ease),color .8s var(--Ease)}
+body.Locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit;color:inherit;background:none;border:0}
+button,textarea{font:inherit;color:inherit;background:none;border:0;border-radius:0}
 button{cursor:pointer}
 img{display:block;max-width:100%}
-::selection{background:rgba(41,151,255,.35)}
-.Wrap{width:100%;max-width:calc(var(--Max) + var(--Gutter) * 2);margin:0 auto;padding:0 var(--Gutter)}
-.Mark{display:block;fill:currentColor}
+::selection{background:var(--Fg);color:var(--Bg)}
+.Wrap{padding-left:var(--Gutter);padding-right:var(--Gutter)}
+.Soft{color:var(--Soft);transition:color .8s var(--Ease)}
 
-.Nav{position:fixed;inset:0 0 auto;z-index:50;height:52px;transition:background .4s var(--Ease)}
-.Nav::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:var(--Line);opacity:0;transition:opacity .4s}
-.Nav.Solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-.Nav.Solid::after{opacity:1}
-.Nav .Wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
-.Brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.02em}
-.Brand .Mark{width:15px;height:18px}
-.Links{display:flex;align-items:center;gap:30px;font-size:13px;color:var(--Dim)}
-.Links a{transition:color .2s}
-.Links a:hover{color:var(--Text)}
-.Links .Pill{color:var(--Text);background:var(--Raised);border:1px solid var(--Line);padding:6px 14px;border-radius:980px;transition:background .2s}
-.Links .Pill:hover{background:#222224}
-.Menu{display:none;width:40px;height:40px;margin-right:-10px;position:relative}
-.Menu span{position:absolute;left:12px;width:16px;height:1.5px;background:var(--Text);border-radius:2px;transition:transform .35s var(--Ease)}
-.Menu span:first-child{top:16px}.Menu span:last-child{top:23px}
-.Nav.Open .Menu span:first-child{transform:translateY(3.5px) rotate(45deg)}
-.Nav.Open .Menu span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.Intro{position:fixed;inset:0;z-index:200;background:var(--Ink);display:grid;place-items:center;clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--Ease)}
+.Intro svg{width:54px;height:65px;fill:var(--Paper);clip-path:inset(100% 0 0 0);animation:MarkIn .9s .15s var(--Out) forwards}
+.Intro.Done{clip-path:inset(0 0 100% 0)}
+.Intro.Done svg{transform:translateY(-40px);opacity:0;transition:transform .9s var(--Ease),opacity .5s}
+@keyframes MarkIn{to{clip-path:inset(0 0 0 0)}}
 
-.Hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 96px;text-align:center;position:relative;overflow:hidden}
-.Hero::before{content:"";position:absolute;left:50%;top:38%;width:min(900px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,255,255,.055),transparent);pointer-events:none}
-.Hero .Wrap{position:relative}
-.HeroMark{width:72px;height:86px;margin:0 auto 40px;color:var(--Text);clip-path:inset(0 0 100% 0);animation:Draw 1.2s .15s var(--Ease) forwards}
-@keyframes Draw{to{clip-path:inset(0 0 0 0)}}
-.Eyebrow{font-size:clamp(17px,1.6vw,21px);font-weight:600;color:var(--Dim);letter-spacing:-.01em}
-h1{font-size:clamp(44px,8.2vw,96px);line-height:1.04;font-weight:600;letter-spacing:-.045em;margin-top:14px}
-h1 span{color:var(--Mute)}
-.Sub{max-width:620px;margin:28px auto 0;font-size:clamp(18px,1.9vw,21px);line-height:1.42;color:var(--Dim);letter-spacing:-.015em}
-.Ctas{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:40px;flex-wrap:wrap}
-.Button{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 24px;border-radius:980px;background:var(--Text);color:#000;font-size:16px;font-weight:500;transition:background .2s,transform .2s var(--Ease)}
-.Button:hover{background:#fff}
-.Button:active{transform:scale(.97)}
-.More{display:inline-flex;align-items:center;gap:4px;color:var(--Link);font-size:17px}
-.More svg{width:8px;height:12px;transition:transform .25s var(--Ease)}
-.More:hover{text-decoration:underline;text-underline-offset:3px}
-.More:hover svg{transform:translateX(2px)}
-.Teams{margin-top:72px;font-size:14px;color:var(--Mute)}
-.Teams b{color:var(--Dim);font-weight:500}
+.Nav{position:fixed;top:0;left:0;right:0;z-index:120;mix-blend-mode:difference;color:#fff;pointer-events:none}
+.Nav .Wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px}
+.Nav a,.Nav button{pointer-events:auto}
+.Brand{display:flex;align-items:center;gap:12px;font-family:var(--Display);font-weight:600;font-size:18px;letter-spacing:-.02em;justify-self:start}
+.Brand svg{width:17px;height:20px;fill:currentColor;transition:transform .6s var(--Out)}
+.Brand:hover svg{transform:rotate(-90deg)}
+.NavRole{font-size:14px;opacity:.6}
+.NavLinks{display:flex;gap:28px;justify-self:end;font-size:14px}
+.Roll{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.3}
+.Roll span{display:inline-block;position:relative;transition:transform .55s var(--Out)}
+.Roll span::after{content:attr(data-text);position:absolute;left:0;top:100%}
+.Roll:hover span,a:hover>.Roll span{transform:translateY(-100%)}
+.MenuButton{display:none;justify-self:end;font-size:14px}
 
-section{position:relative}
-.Section{padding:clamp(96px,14vw,168px) 0 0}
-.Head{text-align:center;max-width:760px;margin:0 auto clamp(48px,6vw,72px)}
-.Head .Eyebrow{color:var(--Mute)}
-h2{font-size:clamp(36px,5.6vw,64px);line-height:1.06;font-weight:600;letter-spacing:-.04em;margin-top:10px}
-.Head p{margin-top:18px;color:var(--Dim);font-size:clamp(17px,1.7vw,19px)}
+.Sheet{position:fixed;inset:0;z-index:110;background:var(--Ink);color:var(--Paper);display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--Gutter) calc(32px + env(safe-area-inset-bottom));clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--Ease);visibility:hidden}
+.Sheet.Open{clip-path:inset(0 0 0 0);visibility:visible}
+.Sheet a{display:block;overflow:hidden;font-family:var(--Display);font-size:clamp(48px,15vw,96px);font-weight:600;letter-spacing:-.045em;line-height:1}
+.Sheet a span{display:block;transform:translateY(100%);transition:transform .8s var(--Out)}
+.Sheet.Open a span{transform:none}
+.Sheet.Open a:nth-child(2) span{transition-delay:.05s}.Sheet.Open a:nth-child(3) span{transition-delay:.1s}.Sheet.Open a:nth-child(4) span{transition-delay:.15s}
+.Sheet p{margin-top:32px;font-size:14px;opacity:.5}
 
-.Roles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.Role{background:var(--Surface);border:1px solid var(--Line);border-radius:28px;padding:34px 30px 30px;display:flex;flex-direction:column;min-height:300px;transition:background .3s var(--Ease),transform .4s var(--Ease)}
-.Role:hover{background:var(--Raised);transform:translateY(-4px)}
-.Role small{font-size:14px;color:var(--Mute);font-weight:500}
-.Role h3{font-size:clamp(26px,2.6vw,32px);font-weight:600;letter-spacing:-.035em;line-height:1.1;margin-top:8px}
-.Role p{color:var(--Dim);margin-top:10px;font-size:16px}
-.Role .More{margin-top:auto;padding-top:28px;font-size:16px}
+.Hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:140px;overflow:hidden}
+.HeroGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--Gutter);align-items:start}
+.Lead{grid-column:1/7;font-family:var(--Display);font-size:clamp(24px,2.5vw,38px);line-height:1.12;letter-spacing:-.03em;font-weight:400}
+.Meta{font-size:14px;line-height:1.55}
+.Meta.A{grid-column:8/10}.Meta.B{grid-column:10/12}
+.Meta b{display:block;font-weight:400}
+.Scroll{grid-column:12/13;justify-self:end;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:14px}
+.Scroll i{display:block;width:1px;height:56px;background:var(--Rule);position:relative;overflow:hidden}
+.Scroll i::after{content:"";position:absolute;left:0;top:0;width:1px;height:100%;background:var(--Fg);animation:Drip 2.2s var(--Ease) infinite}
+@keyframes Drip{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+.Tags{display:flex;justify-content:space-between;margin-top:clamp(64px,10vh,120px);padding-bottom:14px;border-bottom:1px solid var(--Rule);font-size:14px}
+.Giant{font-family:var(--Display);font-weight:700;letter-spacing:-.055em;line-height:.78;white-space:nowrap;padding:.06em 0 .02em;margin-left:-.035em;will-change:transform;user-select:none}
+.Giant .Ch{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .01em .02em}
+.Giant .Ch span{display:inline-block;transform:translateY(110%);will-change:transform}
+.Ready .Giant .Ch span{transform:translateY(var(--Lift,0));transition:transform 1.3s var(--Out)}
+.Ready .Giant.Settled .Ch span{transition:none}
 
-.Bento{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.Tile{background:var(--Surface);border:1px solid var(--Line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column;min-height:560px;position:relative}
-.TileText{padding:44px 40px 0;text-align:center;position:relative;z-index:2}
-.TileText small{font-size:14px;color:var(--Mute);font-weight:500}
-.TileText h3{font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-.04em;line-height:1.08;margin-top:6px}
-.TileText p{color:var(--Dim);margin:10px auto 0;max-width:380px;font-size:16px}
-.TileText .More{margin-top:14px;font-size:16px}
-.Visual{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:36px 32px 44px}
-.Shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.Fade{opacity:0;transform:translateY(16px);transition:opacity 1s var(--Out),transform 1s var(--Out)}
+.Ready .Hero .Fade,.Fade.In{opacity:1;transform:none}
+.Ready .Hero .Fade{transition-delay:.55s}
+.Ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.Ln>span{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--Out)}
+.In .Ln>span,.Ready .Hero .Ln>span{transform:none}
 
-.Slots{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;width:100%;max-width:340px}
-.Slots i{aspect-ratio:1;border-radius:12px;background:#151516;border:1px solid rgba(255,255,255,.06)}
-.Slots i.Full{background:#232325}
-.Slots i.Pick{background:#2A2A2C;box-shadow:0 0 0 2px var(--Text)}
-.Bars{width:100%;max-width:320px;display:flex;flex-direction:column;gap:18px}
-.Bar{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;font-size:13px;color:var(--Mute)}
-.Bar span{height:6px;border-radius:6px;background:#1C1C1E;position:relative;overflow:hidden}
-.Bar span::after{content:"";position:absolute;inset:0;border-radius:6px;background:var(--Text);transform-origin:left;transform:scaleX(var(--Fill));transition:transform 1.6s var(--Ease)}
-.Tile:not(.In) .Bar span::after{transform:scaleX(0)}
-.Field{width:100%;max-width:340px;background:#121213;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px 18px 12px;text-align:left;transition:border-color .25s,box-shadow .25s}
-.Field:focus-within{border-color:var(--Link);box-shadow:0 0 0 4px rgba(41,151,255,.18)}
-.Field label{font-size:12px;color:var(--Mute);font-weight:500}
-.Field textarea{display:block;width:100%;height:84px;resize:none;outline:0;margin-top:6px;font-size:16px;line-height:1.45;caret-color:var(--Link)}
-.Field textarea::placeholder{color:#4A4A4E}
-.Field div{display:flex;justify-content:flex-end;font-size:12px;color:var(--Mute);font-variant-numeric:tabular-nums}
-.Line{width:100%;max-width:380px}
-.Line path{fill:none;stroke:var(--Text);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 2s var(--Ease)}
-.Line .Fill{stroke:none;fill:url(#LineFade);opacity:0;transition:opacity 1.2s .8s}
-.Line line{stroke:rgba(255,255,255,.07)}
-.Tile.In .Line path{stroke-dashoffset:0}
-.Tile.In .Line .Fill{opacity:1}
-.Badge{display:inline-block;font-size:12px;font-weight:500;color:var(--Text);background:var(--Raised);border:1px solid var(--Line);border-radius:980px;padding:3px 10px;margin-bottom:12px}
+.Section{padding-top:clamp(120px,18vw,240px)}
+.Label{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:14px;border-bottom:1px solid var(--Rule);font-size:14px;transition:border-color .8s var(--Ease)}
 
-.Story{padding:clamp(120px,16vw,200px) 0 0}
-.Story p{max-width:900px;margin:0 auto;font-size:clamp(28px,4.1vw,48px);line-height:1.18;font-weight:600;letter-spacing:-.035em}
-.Story p span{color:#2C2C2E;transition:color .35s}
-.Story p span.Lit{color:var(--Text)}
-.Story .Sign{max-width:900px;margin:40px auto 0;display:flex;align-items:center;gap:14px;color:var(--Dim);font-size:16px}
-.Story .Sign .Mark{width:20px;height:24px;color:var(--Text)}
+.List{list-style:none}
+.Item{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--Gutter);align-items:center;padding:clamp(22px,2.6vw,36px) 0;border-bottom:1px solid var(--Rule);isolation:isolate;transition:color .5s var(--Ease),border-color .8s var(--Ease)}
+.Item::before{content:"";position:absolute;inset:0 calc(var(--Gutter) * -1);background:var(--Fg);transform:scaleY(0);transform-origin:bottom;transition:transform .6s var(--Ease);z-index:-1}
+.Item:hover{color:var(--Bg)}
+.Item:hover::before{transform:scaleY(1);transform-origin:top}
+.Num{grid-column:1/2;font-size:14px;font-variant-numeric:tabular-nums}
+.Name{grid-column:2/8;font-family:var(--Display);font-size:clamp(36px,5.4vw,84px);font-weight:500;letter-spacing:-.045em;line-height:.95;transition:transform .7s var(--Out)}
+.Item:hover .Name{transform:translateX(clamp(8px,1.4vw,24px))}
+.Kind{grid-column:8/11;font-size:15px;line-height:1.4}
+.Kind small{display:block;font-size:14px;opacity:.55}
+.Go{grid-column:12/13;justify-self:end;width:clamp(36px,3.4vw,52px);height:clamp(36px,3.4vw,52px);border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;overflow:hidden;position:relative}
+.Go svg{width:38%;height:38%;transition:transform .6s var(--Out)}
+.Go svg+svg{position:absolute;transform:translate(-160%,160%)}
+.Item:hover .Go svg:first-child{transform:translate(160%,-160%)}
+.Item:hover .Go svg+svg{transform:none}
 
-.Craft{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.Rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.Rule{background:var(--Surface);border:1px solid var(--Line);border-radius:24px;padding:28px 26px}
-.Rule h4{font-size:19px;font-weight:600;letter-spacing:-.025em}
-.Rule p{color:var(--Dim);font-size:15px;margin-top:8px;line-height:1.5}
-.Code{background:var(--Surface);border:1px solid var(--Line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
-.CodeTop{display:flex;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid var(--Line);font-size:13px;color:var(--Mute)}
-.CodeTop i{width:11px;height:11px;border-radius:50%;background:#2C2C2E}
-.CodeTop span{margin-left:auto}
-.Code pre{flex:1;padding:24px 22px;font-family:var(--Mono);font-size:13.5px;line-height:1.8;color:#C9C9CE;overflow-x:auto;tab-size:4;scrollbar-width:none}
-.Code pre::-webkit-scrollbar{display:none}
-.Kw{color:#FF7A90}.Fn{color:#82C1FF}.St{color:#9FD8A4}.Dm{color:#6E6E73}
+.Systems{position:relative;margin-top:clamp(120px,18vw,240px)}
+.Pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.Track{display:flex;gap:clamp(20px,3vw,48px);padding:0 var(--Gutter);will-change:transform;align-items:stretch}
+.Opener{flex:0 0 clamp(300px,34vw,520px);display:flex;flex-direction:column;justify-content:space-between;padding:8px 0}
+.Opener h2{font-family:var(--Display);font-size:clamp(64px,9vw,148px);font-weight:600;letter-spacing:-.055em;line-height:.85}
+.Opener p{max-width:340px;font-size:17px;line-height:1.45}
+.Panel{flex:0 0 clamp(320px,56vw,900px);display:flex;flex-direction:column;gap:22px}
+.Media{position:relative;height:clamp(300px,58vh,640px);background:#161616;overflow:hidden;display:grid;place-items:center}
+.Media .Shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.Ghost{position:absolute;left:-.04em;bottom:-.2em;font-family:var(--Display);font-weight:700;font-size:clamp(90px,13vw,230px);letter-spacing:-.06em;line-height:1;color:#1F1F1F;white-space:nowrap;pointer-events:none;transition:transform 1.4s var(--Out)}
+.Panel:hover .Ghost{transform:translateX(3%)}
+.Corner{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(236,234,228,.45);z-index:3}
+.PanelInfo{display:grid;grid-template-columns:56px 1fr 1.1fr;gap:var(--Gutter);align-items:baseline}
+.PanelInfo span{font-size:14px;font-variant-numeric:tabular-nums}
+.PanelInfo h3{font-family:var(--Display);font-size:clamp(26px,2.6vw,40px);font-weight:500;letter-spacing:-.04em;line-height:1}
+.PanelInfo p{font-size:15px;line-height:1.45}
+.Progress{position:absolute;left:var(--Gutter);right:var(--Gutter);bottom:clamp(24px,4vh,40px);height:1px;background:var(--Rule)}
+.Progress i{position:absolute;inset:0;background:var(--Fg);transform-origin:left;transform:scaleX(0)}
+.Ink{position:relative;z-index:3;width:min(380px,82%);border-bottom:1px solid rgba(236,234,228,.25);padding-bottom:10px;transition:border-color .4s}
+.Ink:focus-within{border-color:var(--Paper)}
+.Ink label{display:block;font-size:13px;color:rgba(236,234,228,.45);margin-bottom:6px}
+.Ink textarea{display:block;width:100%;height:96px;resize:none;outline:0;font-family:var(--Display);font-size:clamp(22px,2vw,28px);line-height:1.15;letter-spacing:-.025em;caret-color:var(--Paper)}
+.Ink textarea::placeholder{color:#3A3A3A}
+.Ink div{display:flex;justify-content:space-between;font-size:13px;color:rgba(236,234,228,.45);font-variant-numeric:tabular-nums}
 
-.Contact{padding:clamp(140px,18vw,220px) 0 0;text-align:center}
-.Contact .Mark{width:44px;height:53px;margin:0 auto 32px;color:var(--Text)}
-.Contact h2{font-size:clamp(40px,7vw,80px)}
-.Contact p{color:var(--Dim);font-size:clamp(17px,1.9vw,21px);margin:20px auto 0;max-width:520px}
-.Contact .Ctas{margin-top:36px}
+.AboutGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--Gutter);padding-top:clamp(40px,5vw,72px)}
+.AboutSide{grid-column:1/4;font-size:14px;align-self:start;position:sticky;top:100px}
+.Statement{grid-column:4/13;font-family:var(--Display);font-size:clamp(30px,3.9vw,64px);line-height:1.04;letter-spacing:-.04em;font-weight:400}
+.Rules{grid-column:4/13;list-style:none;margin-top:clamp(80px,10vw,140px);border-top:1px solid var(--Rule)}
+.Rules li{display:grid;grid-template-columns:56px 1fr 1fr;gap:var(--Gutter);padding:26px 0;border-bottom:1px solid var(--Rule);align-items:baseline}
+.Rules span{font-size:14px;font-variant-numeric:tabular-nums}
+.Rules h4{font-family:var(--Display);font-size:clamp(22px,2.2vw,32px);font-weight:500;letter-spacing:-.035em;line-height:1.05}
+.Rules p{font-size:15px;line-height:1.5;max-width:400px}
 
-footer{margin-top:clamp(120px,14vw,180px);border-top:1px solid var(--Line);font-size:12px;color:var(--Mute)}
-footer .Wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:22px;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
-footer nav{display:flex;gap:22px}
-footer a:hover{color:var(--Text)}
+.Contact{padding-top:clamp(120px,16vw,220px);overflow:hidden}
+.Marquee{display:flex;white-space:nowrap;font-family:var(--Display);font-size:clamp(72px,13vw,220px);font-weight:600;letter-spacing:-.055em;line-height:1;will-change:transform}
+.Marquee div{display:flex;align-items:center;flex-shrink:0}
+.Marquee span{padding-right:.28em}
+.Marquee svg{width:.36em;height:.43em;fill:currentColor;margin-right:.28em;flex-shrink:0}
+.ContactGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--Gutter);margin-top:clamp(56px,8vw,110px);align-items:end}
+.ContactGrid>p{grid-column:1/5;font-size:17px;line-height:1.45}
+.Mail{grid-column:5/13;justify-self:end;font-family:var(--Display);font-size:clamp(28px,4.4vw,72px);font-weight:500;letter-spacing:-.045em;line-height:1.1;position:relative;padding-bottom:6px}
+.Mail::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform-origin:right;transition:transform .7s var(--Ease)}
+.Mail:hover::after{transform:scaleX(0)}
+.Foot{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--Gutter);margin-top:clamp(100px,12vw,180px);padding-top:20px;padding-bottom:calc(24px + env(safe-area-inset-bottom));border-top:1px solid var(--Rule);font-size:14px}
+.Foot>span{grid-column:1/5}
+.Foot nav{grid-column:5/10;display:flex;gap:24px}
+.Foot>a{grid-column:10/13;justify-self:end}
 
-.Rise{opacity:0;transform:translateY(32px);transition:opacity 1s var(--Ease),transform 1s var(--Ease)}
-.Rise.In{opacity:1;transform:none}
-.Hero .Rise{animation:Up 1.1s var(--Ease) forwards}
-.Hero .Rise:nth-child(2){animation-delay:.35s}.Hero .Rise:nth-child(3){animation-delay:.45s}.Hero .Rise:nth-child(4){animation-delay:.55s}.Hero .Rise:nth-child(5){animation-delay:.65s}.Hero .Rise:nth-child(6){animation-delay:.75s}
-@keyframes Up{to{opacity:1;transform:none}}
-.Delay1{transition-delay:.1s}.Delay2{transition-delay:.2s}
-
-@media (max-width:1068px){
-.Roles{grid-template-columns:1fr 1fr}
-.Roles .Role:last-child{grid-column:1/-1;min-height:240px}
-.Craft{grid-template-columns:1fr}
-.Tile{min-height:520px}
-.TileText{padding:40px 30px 0}
+@media (max-width:1000px){
+.Lead{grid-column:1/9}
+.Meta.A{grid-column:9/13}
+.Meta.B,.Scroll,.NavRole{display:none}
+.Nav .Wrap{grid-template-columns:1fr auto}
+.Name{grid-column:2/9}
+.Kind{grid-column:9/12}
+.Statement,.Rules{grid-column:1/13}
+.AboutSide{grid-column:1/13;position:static;margin-bottom:32px}
 }
-@media (max-width:734px){
-body{font-size:16px}
-.Links{position:absolute;top:52px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px var(--Gutter) 24px;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--Line);font-size:22px;font-weight:600;color:var(--Text);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s var(--Ease),transform .3s var(--Ease),visibility .3s}
-.Links a{padding:12px 0;border-bottom:1px solid var(--Line)}
-.Links .Pill{background:none;border:0;border-radius:0;padding:12px 0}
-.Nav.Open{background:rgba(0,0,0,.92)}
-.Nav.Open .Links{opacity:1;visibility:visible;transform:none}
-.Menu{display:block}
-.Hero{padding:104px 0 72px}
-.HeroMark{width:56px;height:67px;margin-bottom:32px}
-.Ctas{gap:20px;flex-direction:column}
-.Teams{margin-top:56px}
-.Roles,.Bento,.Rules{grid-template-columns:1fr}
-.Roles .Role:last-child{grid-column:auto}
-.Role{min-height:0;padding:28px 24px 26px;border-radius:24px}
-.Tile{min-height:0;border-radius:24px}
-.TileText{padding:34px 24px 0}
-.Visual{padding:32px 22px 36px;min-height:260px}
-.Slots{gap:6px}
-.Slots i{border-radius:9px}
-.Code pre{font-size:12.5px;padding:20px 18px}
-footer .Wrap{flex-direction:column-reverse;align-items:flex-start;gap:12px}
+@media (max-width:760px){
+.NavRole,.NavLinks{display:none}
+.Nav .Wrap{grid-template-columns:1fr auto;height:64px}
+.MenuButton{display:inline-block}
+.Hero{padding-top:120px}
+.Lead,.Meta.A{grid-column:1/13}
+.Meta.A{margin-top:28px}
+.Tags{margin-top:56px}
+.Tags span:nth-child(2){display:none}
+.Item{grid-template-columns:40px 1fr auto;row-gap:8px}
+.Num{grid-column:1/2;align-self:start;padding-top:6px}
+.Name{grid-column:2/3}
+.Kind{grid-column:2/3;grid-row:2}
+.Go{grid-column:3/4;grid-row:1/3}
+.Pin{position:static;height:auto;display:block;padding-top:clamp(100px,24vw,160px)}
+.Track{flex-direction:column;transform:none!important;gap:56px}
+.Opener{flex:none;gap:24px}
+.Panel{flex:none}
+.Media{height:auto;aspect-ratio:4/3.4}
+.PanelInfo{grid-template-columns:40px 1fr;row-gap:8px}
+.PanelInfo p{grid-column:2/3}
+.Progress{display:none}
+.Rules li{grid-template-columns:40px 1fr;row-gap:8px}
+.Rules p{grid-column:2/3}
+.ContactGrid>p,.Mail{grid-column:1/13;justify-self:start}
+.Mail{font-size:clamp(20px,6.3vw,40px)}
+.Foot{grid-template-columns:1fr 1fr;row-gap:16px}
+.Foot>span{grid-column:1/3;order:3}
+.Foot nav{grid-column:1/3;flex-wrap:wrap;gap:8px 20px}
+.Foot>a{grid-column:2/3;grid-row:1}
 }
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none!important;transition:none!important}
-.Rise{opacity:1;transform:none}
-.HeroMark{clip-path:none}
-.Line path{stroke-dashoffset:0}
-.Line .Fill{opacity:1}
-.Story p span{color:var(--Text)}
+.Intro{display:none}
+.Giant .Ch span,.Ln>span{transform:none!important}
+.Fade{opacity:1;transform:none}
 }
 </style>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="Logo" viewBox="170 139 196 235"><path d="M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z"/></symbol><symbol id="Chevron" viewBox="0 0 8 12"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+<body class="Locked" data-theme="Light">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="Logo" viewBox="170 139 196 235"><path d="M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z"/></symbol><symbol id="Arrow" viewBox="0 0 16 16"><path d="M3.5 12.5l9-9M5 3.5h7.5V11" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol></svg>
 
-<header class="Nav" id="Nav">
+<div class="Intro" id="Intro" aria-hidden="true"><svg><use href="#Logo"/></svg></div>
+
+<header class="Nav">
 <div class="Wrap">
-<a class="Brand" href="#Top" aria-label="Paradox home"><svg class="Mark"><use href="#Logo"/></svg>Paradox</a>
-<nav class="Links" id="Links">
-<a href="#Experience">Experience</a>
-<a href="#Work">Work</a>
-<a href="#About">About</a>
-<a class="Pill" href="#Contact">Contact</a>
+<a class="Brand" href="#Top" aria-label="Paradox, back to top"><svg><use href="#Logo"/></svg>Paradox</a>
+<span class="NavRole">Programmer and UI Designer</span>
+<nav class="NavLinks">
+<a href="#Work" class="Roll"><span data-text="Work">Work</span></a>
+<a href="#Systems" class="Roll"><span data-text="Systems">Systems</span></a>
+<a href="#About" class="Roll"><span data-text="About">About</span></a>
+<a href="#Contact" class="Roll"><span data-text="Contact">Contact</span></a>
 </nav>
-<button class="Menu" id="Menu" aria-label="Menu" aria-expanded="false" aria-controls="Links"><span></span><span></span></button>
+<button class="MenuButton Roll" id="MenuButton" aria-expanded="false" aria-controls="Sheet"><span data-text="Menu" id="MenuLabel">Menu</span></button>
 </div>
 </header>
 
+<div class="Sheet" id="Sheet">
+<a href="#Work"><span>Work</span></a>
+<a href="#Systems"><span>Systems</span></a>
+<a href="#About"><span>About</span></a>
+<a href="#Contact"><span>Contact</span></a>
+<p>paradoxsoftwork.com</p>
+</div>
+
 <main id="Top">
-<section class="Hero">
+<section class="Hero" data-theme="Light">
 <div class="Wrap">
-<svg class="Mark HeroMark" aria-hidden="true"><use href="#Logo"/></svg>
-<p class="Eyebrow Rise">Paradox</p>
-<h1 class="Rise">Clean systems.<br><span>Considered design.</span></h1>
-<p class="Sub Rise">Full stack Roblox programmer and professional UI designer, specializing in modular infrastructure and low latency networking.</p>
-<div class="Ctas Rise">
-<a class="Button" href="#Work">See the work</a>
-<a class="More" href="#Contact">Get in touch<svg><use href="#Chevron"/></svg></a>
+<div class="HeroGrid">
+<p class="Lead" data-split>Full stack programmer and UI designer, building systems for Roblox since 2021.</p>
+<div class="Meta A Fade"><span class="Soft">Currently at</span><b>REACT Studios</b><b>Byte-Breeze</b></div>
+<div class="Meta B Fade"><span class="Soft">Focus</span><b>Modular infrastructure</b><b>Low latency networking</b></div>
+<div class="Scroll Fade"><span class="Soft">Scroll</span><i></i></div>
 </div>
-<p class="Teams Rise">Team member at <b>REACT Studios</b> and <b>Byte-Breeze</b></p>
+<div class="Tags Fade"><span>Programmer</span><span>Interface Designer</span><span>Since 2021</span></div>
+<h1 class="Giant" id="Giant" aria-label="Paradox">PARADOX</h1>
 </div>
 </section>
 
-<section class="Section" id="Experience">
-<div class="Wrap">
-<div class="Head Rise">
-<p class="Eyebrow">Experience</p>
-<h2>Where I've built.</h2>
-</div>
-<div class="Roles">
-<a class="Role Rise" href="https://www.roblox.com/communities/33061154/Byte-Breeze#!/about" target="_blank" rel="noopener">
-<small>Studio</small>
-<h3>Byte-Breeze</h3>
-<p>Lead Programmer and UI Designer</p>
-<span class="More">View on Roblox<svg><use href="#Chevron"/></svg></span>
-</a>
-<a class="Role Rise Delay1" href="https://www.roblox.com/communities/17180419/REACT-Studios#!/about" target="_blank" rel="noopener">
-<small>Studio</small>
-<h3>REACT Studios</h3>
-<p>Lead Programmer and UI Designer</p>
-<span class="More">View on Roblox<svg><use href="#Chevron"/></svg></span>
-</a>
-<a class="Role Rise Delay2" href="https://www.roblox.com/games/6648893133/Breaking-Point-2" target="_blank" rel="noopener">
-<small>Game</small>
-<h3>Breaking Point 2</h3>
-<p>Programmer and VFX</p>
-<span class="More">Play on Roblox<svg><use href="#Chevron"/></svg></span>
-</a>
-</div>
-</div>
+<section class="Section Wrap" id="Work" data-theme="Light">
+<div class="Label Fade"><span>Selected work</span><span class="Soft">(04)</span></div>
+<ul class="List">
+<li><a class="Item Fade" href="https://www.roblox.com/communities/33061154/Byte-Breeze#!/about" target="_blank" rel="noopener">
+<span class="Num">01</span><span class="Name">Byte-Breeze</span><span class="Kind">Lead Programmer and UI Designer<small>Studio</small></span><span class="Go"><svg><use href="#Arrow"/></svg><svg><use href="#Arrow"/></svg></span>
+</a></li>
+<li><a class="Item Fade" href="https://www.roblox.com/communities/17180419/REACT-Studios#!/about" target="_blank" rel="noopener">
+<span class="Num">02</span><span class="Name">REACT Studios</span><span class="Kind">Lead Programmer and UI Designer<small>Studio</small></span><span class="Go"><svg><use href="#Arrow"/></svg><svg><use href="#Arrow"/></svg></span>
+</a></li>
+<li><a class="Item Fade" href="https://www.roblox.com/games/6648893133/Breaking-Point-2" target="_blank" rel="noopener">
+<span class="Num">03</span><span class="Name">Breaking Point 2</span><span class="Kind">Programmer and VFX<small>Game</small></span><span class="Go"><svg><use href="#Arrow"/></svg><svg><use href="#Arrow"/></svg></span>
+</a></li>
+<li><a class="Item Fade" href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener">
+<span class="Num">04</span><span class="Name">LuauChart</span><span class="Kind">Graph and chart renderer<small>Open source</small></span><span class="Go"><svg><use href="#Arrow"/></svg><svg><use href="#Arrow"/></svg></span>
+</a></li>
+</ul>
 </section>
 
-<section class="Section" id="Work">
-<div class="Wrap">
-<div class="Head Rise">
-<p class="Eyebrow">Work</p>
-<h2>Selected systems.</h2>
-<p>Each one programmed and designed by me, from the code to the last pixel.</p>
+<section class="Systems" id="Systems" data-theme="Dark">
+<div class="Pin">
+<div class="Track" id="Track">
+<div class="Opener">
+<h2 data-split>Systems</h2>
+<p class="Soft Fade">Designed and programmed end to end, from the networking underneath to the interface on top.</p>
 </div>
-<div class="Bento">
-<article class="Tile Rise">
-<div class="TileText">
-<small>Gameplay system</small>
-<h3>Realistic Inventory</h3>
-<p>A full inventory system, built to feel grounded and real.</p>
-</div>
-<div class="Visual">
+<article class="Panel">
+<div class="Media">
 <img class="Shot" src="Assets/Inventory.png" alt="Realistic Inventory system" loading="lazy" onerror="this.remove()">
-<div class="Slots" aria-hidden="true"><i class="Full"></i><i class="Full"></i><i class="Pick"></i><i class="Full"></i><i></i><i></i><i class="Full"></i><i></i><i class="Full"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="Corner"><span>01</span><span>Gameplay</span></div>
+<div class="Ghost">Inventory</div>
 </div>
+<div class="PanelInfo"><span class="Soft">01</span><h3>Realistic Inventory</h3><p class="Soft">An inventory system built to feel grounded and real, interface included.</p></div>
 </article>
-<article class="Tile Rise Delay1">
-<div class="TileText">
-<small>Gameplay system</small>
-<h3>Vital System</h3>
-<p>Player vitals, with the interface designed alongside the logic.</p>
-</div>
-<div class="Visual">
+<article class="Panel">
+<div class="Media">
 <img class="Shot" src="Assets/Vitals.png" alt="Vital system" loading="lazy" onerror="this.remove()">
-<div class="Bars" aria-hidden="true">
-<div class="Bar">Health<span style="--Fill:.86"></span></div>
-<div class="Bar">Stamina<span style="--Fill:.62"></span></div>
-<div class="Bar">Hunger<span style="--Fill:.74"></span></div>
-<div class="Bar">Thirst<span style="--Fill:.48"></span></div>
+<div class="Corner"><span>02</span><span>Gameplay</span></div>
+<div class="Ghost">Vitals</div>
 </div>
-</div>
+<div class="PanelInfo"><span class="Soft">02</span><h3>Vital System</h3><p class="Soft">Player vitals, with the logic and the HUD designed side by side.</p></div>
 </article>
-<article class="Tile Rise">
-<div class="TileText">
-<small>Interface system</small>
-<h3>Inkwell</h3>
-<p>Custom textboxes for Roblox. Try the field below.</p>
-</div>
-<div class="Visual">
-<img class="Shot" src="Assets/Inkwell.png" alt="Inkwell custom textboxes" loading="lazy" onerror="this.remove()">
-<div class="Field">
-<label for="InkField">Message</label>
-<textarea id="InkField" maxlength="120" placeholder="Start typing" spellcheck="false"></textarea>
-<div><span id="InkCount">0 / 120</span></div>
+<article class="Panel">
+<div class="Media">
+<div class="Corner"><span>03</span><span>Try it</span></div>
+<div class="Ghost">Inkwell</div>
+<div class="Ink">
+<label for="InkField">Write something</label>
+<textarea id="InkField" maxlength="90" spellcheck="false" placeholder="Hello, Paradox"></textarea>
+<div><span>Inkwell</span><span id="InkCount">0 / 90</span></div>
 </div>
 </div>
-</article>
-<article class="Tile Rise Delay1">
-<div class="TileText">
-<span class="Badge">Open source</span>
-<h3>LuauChart</h3>
-<p>A graph and chart renderer for Roblox, free for anyone to use.</p>
-<a class="More" href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener">Read on the DevForum<svg><use href="#Chevron"/></svg></a>
-</div>
-<div class="Visual">
-<img class="Shot" src="Assets/LuauChart.png" alt="LuauChart graph renderer" loading="lazy" onerror="this.remove()">
-<svg class="Line" viewBox="0 0 380 180" aria-hidden="true">
-<defs><linearGradient id="LineFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
-<line x1="0" y1="45" x2="380" y2="45"/><line x1="0" y1="90" x2="380" y2="90"/><line x1="0" y1="135" x2="380" y2="135"/><line x1="0" y1="179.5" x2="380" y2="179.5"/>
-<path class="Fill" d="M4 140C40 132 60 98 96 104S150 146 188 118 236 40 274 52 330 98 376 30V180H4Z"/>
-<path d="M4 140C40 132 60 98 96 104S150 146 188 118 236 40 274 52 330 98 376 30"/>
-</svg>
-</div>
+<div class="PanelInfo"><span class="Soft">03</span><h3>Inkwell</h3><p class="Soft">Custom textboxes for Roblox, made to type and feel better than the default.</p></div>
 </article>
 </div>
+<div class="Progress"><i id="Progress"></i></div>
 </div>
 </section>
 
-<section class="Story" id="About">
+<section class="Section Wrap" id="About" data-theme="Light">
+<div class="Label Fade"><span>About</span><span class="Soft">(Paradox)</span></div>
+<div class="AboutGrid">
+<p class="AboutSide Soft Fade">Started in 2021.<br>Hooked ever since.</p>
+<p class="Statement" data-split>I started scripting because it let me build anything exactly the way I pictured it. I learned interface design at the same time, so the system and the screen it lives behind have always been one job to me. My workspace and my scripts stay completely clean.</p>
+<ol class="Rules">
+<li class="Fade"><span class="Soft">01</span><h4>PascalCase only</h4><p class="Soft">One naming style across every script, so each file reads like the last.</p></li>
+<li class="Fade"><span class="Soft">02</span><h4>Compressed code</h4><p class="Soft">Tight scripts with nothing left over. If a line does no work, it goes.</p></li>
+<li class="Fade"><span class="Soft">03</span><h4>Modular infrastructure</h4><p class="Soft">Systems built as clean modules that drop in and come out without breaking anything.</p></li>
+<li class="Fade"><span class="Soft">04</span><h4>Low latency networking</h4><p class="Soft">Built around what the player feels, so the game answers the moment they act.</p></li>
+</ol>
+</div>
+</section>
+
+<section class="Contact" id="Contact" data-theme="Dark">
+<div class="Marquee" id="Marquee" aria-hidden="true"><div><span>Let's build something</span><svg><use href="#Logo"/></svg><span>Let's build something</span><svg><use href="#Logo"/></svg></div><div><span>Let's build something</span><svg><use href="#Logo"/></svg><span>Let's build something</span><svg><use href="#Logo"/></svg></div></div>
 <div class="Wrap">
-<p id="StoryText">I started scripting in 2021 and got hooked right away, because it let me build anything exactly the way I wanted. I learned interface design at the same time, so to me the system and the screen it lives behind have always been one job.</p>
-<div class="Sign"><svg class="Mark"><use href="#Logo"/></svg>Paradox, Full Stack Programmer and UI Designer</div>
+<div class="ContactGrid">
+<p class="Soft Fade">Open for commissions.<br>Systems, interfaces, or both.</p>
+<a class="Mail Fade" href="mailto:hello@paradoxsoftwork.com">hello@paradoxsoftwork.com</a>
 </div>
-</section>
-
-<section class="Section">
-<div class="Wrap">
-<div class="Head Rise">
-<p class="Eyebrow">Craft</p>
-<h2>A clean workspace. Always.</h2>
-<p>I keep my workspace and my scripts completely clean. These are the rules every project follows.</p>
-</div>
-<div class="Craft">
-<div class="Rules">
-<div class="Rule Rise"><h4>PascalCase only</h4><p>One naming style across every script, so each file reads like the last.</p></div>
-<div class="Rule Rise Delay1"><h4>Compressed code</h4><p>Tight scripts with nothing left over. If a line does no work, it goes.</p></div>
-<div class="Rule Rise"><h4>Modular infrastructure</h4><p>Systems built as clean modules that drop in and come out without breaking anything.</p></div>
-<div class="Rule Rise Delay1"><h4>Low latency networking</h4><p>Networking built around what the player feels, so the game answers the moment they act.</p></div>
-</div>
-<div class="Code Rise Delay2">
-<div class="CodeTop"><i></i><i></i><i></i><span>Bootstrap.server.luau</span></div>
-<pre><span class="Kw">local</span> Players = game:<span class="Fn">GetService</span>(<span class="St">"Players"</span>)
-<span class="Kw">local</span> Modules = script.Parent.Modules
-
-<span class="Kw">local</span> Inventory = <span class="Fn">require</span>(Modules.Inventory)
-<span class="Kw">local</span> Vitals = <span class="Fn">require</span>(Modules.Vitals)
-
-Players.PlayerAdded:<span class="Fn">Connect</span>(<span class="Kw">function</span>(Player)
-	Inventory.<span class="Fn">New</span>(Player)
-	Vitals.<span class="Fn">New</span>(Player)
-<span class="Kw">end</span>)</pre>
-</div>
-</div>
-</div>
-</section>
-
-<section class="Contact" id="Contact">
-<div class="Wrap Rise">
-<svg class="Mark" aria-hidden="true"><use href="#Logo"/></svg>
-<h2>Let's build something.</h2>
-<p>Open to commissions for systems, interfaces, or both.</p>
-<div class="Ctas">
-<a class="Button" href="mailto:hello@paradoxsoftwork.com">hello@paradoxsoftwork.com</a>
-</div>
+<footer class="Foot">
+<span class="Soft">&copy; <span id="Year">2026</span> Paradox Softwork</span>
+<nav><a href="#Work" class="Roll"><span data-text="Work">Work</span></a><a href="#Systems" class="Roll"><span data-text="Systems">Systems</span></a><a href="#About" class="Roll"><span data-text="About">About</span></a></nav>
+<a href="#Top" class="Roll"><span data-text="Back to top">Back to top</span></a>
+</footer>
 </div>
 </section>
 </main>
 
-<footer>
-<div class="Wrap">
-<span>Copyright <span id="Year">2026</span> Paradox Softwork. All rights reserved.</span>
-<nav><a href="#Experience">Experience</a><a href="#Work">Work</a><a href="#About">About</a><a href="#Contact">Contact</a></nav>
-</div>
-</footer>
-
 <script>
 (()=>{
-const Nav=document.getElementById("Nav"),Menu=document.getElementById("Menu");
+const Body=document.body,Reduced=matchMedia("(prefers-reduced-motion:reduce)").matches,Fine=matchMedia("(pointer:fine)").matches;
+const Clamp=(V,A,B)=>Math.min(B,Math.max(A,V)),Lerp=(A,B,T)=>A+(B-A)*T;
 document.getElementById("Year").textContent=new Date().getFullYear();
-const SetMenu=Open=>{Nav.classList.toggle("Open",Open);Menu.setAttribute("aria-expanded",Open)};
-Menu.addEventListener("click",()=>SetMenu(!Nav.classList.contains("Open")));
-document.querySelectorAll(".Links a").forEach(Link=>Link.addEventListener("click",()=>SetMenu(false)));
 
-const Observer=new IntersectionObserver(Entries=>Entries.forEach(Entry=>{if(Entry.isIntersecting){Entry.target.classList.add("In");Observer.unobserve(Entry.target)}}),{threshold:.15,rootMargin:"0px 0px -6% 0px"});
-document.querySelectorAll("section .Rise,.Tile").forEach(Node=>Observer.observe(Node));
+const Giant=document.getElementById("Giant");
+Giant.innerHTML=`<span>${[...Giant.textContent].map((C,I)=>`<span class="Ch" aria-hidden="true"><span style="transition-delay:${.05*I}s">${C}</span></span>`).join("")}</span>`;
+const Chars=[...Giant.querySelectorAll(".Ch>span")];
+const Context=document.createElement("canvas").getContext("2d"),Letters=[...Giant.textContent];
+const Fit=()=>{Context.font='700 100px "Funnel Display"';const Width=Letters.reduce((T,C)=>T+Context.measureText(C).width+100*(.02-.055),0);Giant.style.fontSize=(100*Giant.clientWidth*.985/Width)+"px"};
 
-const Story=document.getElementById("StoryText");
-Story.innerHTML=Story.textContent.trim().split(/\s+/).map(Word=>`<span>${Word}</span>`).join(" ");
-const Words=[...Story.children];
-let Ticking=false;
-const Update=()=>{
-Ticking=false;
-Nav.classList.toggle("Solid",scrollY>8);
-const Box=Story.getBoundingClientRect(),View=innerHeight;
-const Progress=Math.min(1,Math.max(0,(View*.82-Box.top)/(Box.height+View*.3)));
-const Count=Math.round(Progress*Words.length);
-Words.forEach((Word,Index)=>Word.classList.toggle("Lit",Index<Count))};
-addEventListener("scroll",()=>{if(!Ticking){Ticking=true;requestAnimationFrame(Update)}},{passive:true});
-addEventListener("resize",Update);
-Update();
+const Split=El=>{
+const Words=(El.dataset.words||(El.dataset.words=El.textContent.trim())).split(/\s+/);
+El.innerHTML=Words.map(W=>`<span class="W">${W}</span>`).join(" ");
+const Lines=[];let Top=null;
+[...El.children].forEach(W=>{if(W.offsetTop!==Top){Top=W.offsetTop;Lines.push([])}Lines[Lines.length-1].push(W.textContent)});
+El.innerHTML=Lines.map((L,I)=>`<span class="Ln"><span style="transition-delay:${(El.closest(".Hero")?.35:0)+I*.08}s">${L.join(" ")}</span></span>`).join("")};
+const Splits=[...document.querySelectorAll("[data-split]")];
+const Layout=()=>{Fit();Splits.forEach(Split)};
+Layout();
+document.fonts&&document.fonts.load('700 100px "Funnel Display"').then(Layout);
+let ResizeTimer;addEventListener("resize",()=>{clearTimeout(ResizeTimer);ResizeTimer=setTimeout(()=>{Layout();Measure()},120)});
+
+const Observer=new IntersectionObserver(Entries=>Entries.forEach(E=>{if(E.isIntersecting){E.target.classList.add("In");Observer.unobserve(E.target)}}),{threshold:.2,rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll("section:not(.Hero) .Fade,section:not(.Hero) [data-split]").forEach(El=>Observer.observe(El));
+
+const Themes=new IntersectionObserver(Entries=>Entries.forEach(E=>{if(E.isIntersecting)Body.dataset.theme=E.target.dataset.theme}),{rootMargin:"-50% 0px -50% 0px"});
+document.querySelectorAll("section[data-theme]").forEach(S=>Themes.observe(S));
+
+const Intro=document.getElementById("Intro");
+const Start=()=>{Intro.classList.add("Done");Body.classList.remove("Locked");setTimeout(()=>Body.classList.add("Ready"),250);setTimeout(()=>{Giant.classList.add("Settled");Intro.remove()},1900)};
+if(Reduced){Intro.remove();Body.classList.remove("Locked");Body.classList.add("Ready");Giant.classList.add("Settled")}else{Promise.race([document.fonts?document.fonts.ready:Promise.resolve(),new Promise(R=>setTimeout(R,1500))]).then(()=>setTimeout(Start,700))}
+
+const Sheet=document.getElementById("Sheet"),MenuButton=document.getElementById("MenuButton"),MenuLabel=document.getElementById("MenuLabel");
+const SetSheet=Open=>{Sheet.classList.toggle("Open",Open);MenuButton.setAttribute("aria-expanded",Open);MenuLabel.textContent=Open?"Close":"Menu";MenuLabel.dataset.text=MenuLabel.textContent;Body.classList.toggle("Locked",Open)};
+MenuButton.addEventListener("click",()=>SetSheet(!Sheet.classList.contains("Open")));
+Sheet.querySelectorAll("a").forEach(A=>A.addEventListener("click",()=>SetSheet(false)));
+
+const Systems=document.getElementById("Systems"),Track=document.getElementById("Track"),Progress=document.getElementById("Progress");
+const Horizontal=matchMedia("(min-width:761px)");
+let Distance=0;
+const Measure=()=>{if(!Horizontal.matches){Systems.style.height="";Distance=0;return}Distance=Math.max(0,Track.scrollWidth-innerWidth);Systems.style.height=(Distance+innerHeight)+"px"};
+Measure();Horizontal.addEventListener("change",Measure);
+document.fonts&&document.fonts.ready.then(Measure);
+
+const Marquee=document.getElementById("Marquee");
+let MarqueeX=0,LastY=scrollY,Velocity=0,Direction=-1,TrackX=0,MouseX=null,Lifts=Chars.map(()=>0);
+Giant.parentElement.addEventListener("mousemove",E=>{MouseX=E.clientX});
+Giant.parentElement.addEventListener("mouseleave",()=>{MouseX=null});
+
+const Frame=()=>{
+const Y=scrollY,Delta=Y-LastY;LastY=Y;
+Velocity=Lerp(Velocity,Delta,.1);if(Math.abs(Delta)>.5)Direction=Delta>0?-1:1;
+if(!Reduced){
+Giant.style.transform=`translate3d(0,${Y*.28}px,0)`;
+const Half=Marquee.firstElementChild.offsetWidth;
+MarqueeX+=Direction*(.6+Math.abs(Velocity)*.25);
+if(MarqueeX<=-Half)MarqueeX+=Half;if(MarqueeX>0)MarqueeX-=Half;
+Marquee.style.transform=`translate3d(${MarqueeX}px,0,0)`;
+if(Fine&&Giant.classList.contains("Settled")){const Size=parseFloat(Giant.style.fontSize);Chars.forEach((C,I)=>{const Box=C.parentElement.getBoundingClientRect(),Target=MouseX===null?0:-Math.max(0,1-Math.abs(MouseX-(Box.left+Box.width/2))/(Size*.9))*Size*.12;Lifts[I]=Lerp(Lifts[I],Target,.12);C.style.transform=`translate3d(0,${Lifts[I].toFixed(2)}px,0)`})}}
+if(Distance){const Box=Systems.getBoundingClientRect(),P=Clamp(-Box.top/(Box.height-innerHeight),0,1);TrackX=Reduced?P*Distance:Lerp(TrackX,P*Distance,.14);Track.style.transform=`translate3d(${-TrackX}px,0,0)`;Progress.style.transform=`scaleX(${P})`}
+requestAnimationFrame(Frame)};
+requestAnimationFrame(Frame);
+
+document.querySelectorAll('a[href^="#"]').forEach(A=>A.addEventListener("click",E=>{const Target=document.querySelector(A.getAttribute("href"));if(!Target)return;E.preventDefault();scrollTo({top:A.getAttribute("href")==="#Top"?0:Target.getBoundingClientRect().top+scrollY,behavior:Reduced?"auto":"smooth"})}));
 
 const Ink=document.getElementById("InkField"),InkCount=document.getElementById("InkCount");
-Ink.addEventListener("input",()=>{InkCount.textContent=`${Ink.value.length} / 120`});
+Ink.addEventListener("input",()=>{InkCount.textContent=`${Ink.value.length} / 90`});
 })();
 </script>
 </body>
