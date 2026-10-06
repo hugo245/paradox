@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Paradox</title>
 <meta name="description" content="Paradox is a full stack Roblox programmer and UI designer, specializing in modular infrastructure and low latency networking.">
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#000000">
 <meta property="og:title" content="Paradox">
 <meta property="og:description" content="Full stack Roblox programmer and UI designer.">
 <meta property="og:url" content="https://paradoxsoftwork.com">
@@ -14,81 +14,223 @@
 <link rel="apple-touch-icon" href="Assets/Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600&family=Funnel+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-:root{--Bg:#0A0A0A;--Text:#EDEDED;--Dim:#8A8A8A;--Faint:#2A2A2A;--Font:"Funnel Sans",-apple-system,"Helvetica Neue",sans-serif}
+:root{--Bg:#000;--Cell:#070707;--Hover:#0C0C0C;--Line:#1C1C1C;--Text:#EDEDED;--Dim:#8F8F8F;--Mute:#5C5C5C;--Display:"Funnel Display",sans-serif;--Font:"Funnel Sans",-apple-system,"Helvetica Neue",sans-serif;--Mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--Bg);color:var(--Text);font-family:var(--Font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:56px}
+body{background:var(--Bg);color:var(--Text);font-family:var(--Font);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 ::selection{background:var(--Text);color:var(--Bg)}
-main{max-width:600px;margin:0 auto;padding:clamp(64px,16vh,160px) 24px calc(64px + env(safe-area-inset-bottom))}
-header svg{display:block;width:22px;height:26px;fill:var(--Text);margin-bottom:36px}
-h1{font-size:15px;font-weight:500}
-.Role{color:var(--Dim)}
-.Intro{margin-top:28px;color:var(--Dim)}
-.Intro p+p{margin-top:14px}
-.Intro b{color:var(--Text);font-weight:400}
-section{margin-top:64px}
-h2{font-size:15px;font-weight:400;color:var(--Dim);margin-bottom:14px}
-ul{list-style:none}
-.Row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:10px 0;border-top:1px solid var(--Faint)}
-li:last-child .Row{border-bottom:1px solid var(--Faint)}
-.Row span:last-child{color:var(--Dim);text-align:right}
-a.Row span:first-child{display:inline-flex;align-items:center;gap:6px}
-a.Row svg{width:9px;height:9px;opacity:0;transform:translate(-3px,3px);transition:opacity .25s,transform .25s}
-a.Row:hover svg{opacity:1;transform:none}
-a.Row span:last-child{transition:color .25s}
-a.Row:hover span:last-child{color:var(--Text)}
-.Mail{border-bottom:1px solid var(--Dim);transition:border-color .25s}
-.Mail:hover{border-color:var(--Text)}
-footer{margin-top:96px;color:var(--Dim);font-size:13px}
-.Show{opacity:0;transform:translateY(6px);animation:Show .8s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes Show{to{opacity:1;transform:none}}
-@media (max-width:480px){.Row{flex-direction:column;gap:0}.Row span:last-child{text-align:left}}
-@media (prefers-reduced-motion:reduce){.Show{animation:none;opacity:1;transform:none}}
+.Frame{max-width:1200px;margin:0 auto;border-left:1px solid var(--Line);border-right:1px solid var(--Line)}
+.Label{font-family:var(--Mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--Mute)}
+
+.Nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--Line)}
+.Nav .Frame{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 24px}
+.Brand{display:flex;align-items:center;gap:10px;font-weight:500}
+.Brand svg{width:14px;height:17px;fill:var(--Text)}
+.Links{display:flex;gap:28px;color:var(--Dim);font-size:13px}
+.Links a{transition:color .2s}
+.Links a:hover{color:var(--Text)}
+.Button{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:7px;font-size:13px;font-weight:500;border:1px solid var(--Line);background:var(--Cell);transition:background .2s,border-color .2s}
+.Button:hover{background:#111;border-color:#2A2A2A}
+.Button.Primary{background:var(--Text);color:#000;border-color:var(--Text)}
+.Button.Primary:hover{background:#fff}
+.Button svg{width:10px;height:10px}
+
+.Hero{position:relative;overflow:hidden;border-bottom:1px solid var(--Line)}
+.Hero canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:radial-gradient(ellipse 85% 90% at 70% 50%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 85% 90% at 70% 50%,#000 40%,transparent 100%)}
+.HeroInner{position:relative;padding:120px 24px 96px;max-width:620px;pointer-events:none}
+.HeroInner a{pointer-events:auto}
+.Status{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 10px;border:1px solid var(--Line);border-radius:999px;background:rgba(0,0,0,.6);font-size:12px;color:var(--Dim)}
+.Status i{width:6px;height:6px;border-radius:50%;background:#3DD68C;box-shadow:0 0 8px #3DD68C}
+h1{font-family:var(--Display);font-size:clamp(34px,4.4vw,56px);font-weight:500;line-height:1.05;letter-spacing:-.035em;margin-top:24px;background:linear-gradient(180deg,#FFF 30%,#8A8A8A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.Lead{margin-top:20px;font-size:16px;color:var(--Dim);max-width:460px}
+.Actions{display:flex;gap:10px;margin-top:32px}
+.Teams{margin-top:72px;color:var(--Mute);font-size:13px}
+.Teams b{font-weight:500;color:var(--Dim)}
+
+.Head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:56px 24px 24px;border-bottom:1px solid var(--Line)}
+h2{font-family:var(--Display);font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.2;margin-top:8px}
+.Head p{color:var(--Dim);max-width:340px;text-align:right}
+.Grid{display:grid;border-bottom:1px solid var(--Line)}
+.Grid>*{border-right:1px solid var(--Line)}
+.Grid>*:last-child{border-right:0}
+.Three{grid-template-columns:repeat(3,1fr)}
+.Two{grid-template-columns:repeat(2,1fr)}
+.Two>*:nth-child(2n){border-right:0}
+.Two>*:nth-child(-n+2){border-bottom:1px solid var(--Line)}
+
+.Role{display:flex;flex-direction:column;gap:4px;padding:24px;min-height:180px;background:var(--Bg);transition:background .25s}
+.Role:hover{background:var(--Hover)}
+.Role h3{font-size:16px;font-weight:500;margin-top:14px}
+.Role p{color:var(--Dim)}
+.Role .Go{margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--Mute);transition:color .25s}
+.Role:hover .Go{color:var(--Text)}
+.Go svg{width:9px;height:9px;transition:transform .25s}
+.Role:hover .Go svg{transform:translate(2px,-2px)}
+
+.Project{padding:24px;display:flex;flex-direction:column;gap:18px}
+.Media{position:relative;aspect-ratio:16/9;border:1px solid var(--Line);border-radius:10px;overflow:hidden;background:radial-gradient(circle,#1A1A1A 1px,transparent 1.2px) 0 0/14px 14px,var(--Cell);display:grid;place-items:center}
+.Media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.Media span{font-family:var(--Mono);font-size:11px;color:var(--Mute);letter-spacing:.06em;text-transform:uppercase}
+.ProjectText{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.ProjectText h3{font-size:16px;font-weight:500}
+.ProjectText p{color:var(--Dim);margin-top:2px}
+.Tag{flex-shrink:0;font-size:12px;color:var(--Dim);border:1px solid var(--Line);border-radius:999px;padding:2px 10px;transition:color .2s,border-color .2s}
+a.Tag:hover{color:var(--Text);border-color:#333}
+
+.About{display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--Line)}
+.About>div:first-child{padding:56px 24px;border-right:1px solid var(--Line)}
+.AboutBody{padding:56px 24px 0}
+.AboutBody>p{font-size:18px;line-height:1.55;color:var(--Dim);max-width:620px;letter-spacing:-.01em}
+.AboutBody>p b{color:var(--Text);font-weight:400}
+.Rules{display:grid;grid-template-columns:1fr 1fr;margin:48px -24px 0;border-top:1px solid var(--Line)}
+.Rules div{padding:20px 24px 22px}
+.Rules div:nth-child(odd){border-right:1px solid var(--Line)}
+.Rules div:nth-child(-n+2){border-bottom:1px solid var(--Line)}
+.Rules h4{font-size:14px;font-weight:500}
+.Rules p{color:var(--Dim);margin-top:2px}
+
+.Cta{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:72px 24px;border-bottom:1px solid var(--Line)}
+.Cta h2{font-size:clamp(24px,2.6vw,32px);margin:0}
+.Cta p{color:var(--Dim);margin-top:6px}
+footer .Frame{display:flex;justify-content:space-between;align-items:center;padding:24px;color:var(--Mute);font-size:13px}
+footer nav{display:flex;gap:20px}
+footer a:hover{color:var(--Text)}
+
+.Fade{opacity:0;transform:translateY(8px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.Fade.In{opacity:1;transform:none}
+
+@media (max-width:860px){
+.Links{display:none}
+.Three,.Two{grid-template-columns:1fr}
+.Grid>*{border-right:0!important;border-bottom:1px solid var(--Line)}
+.Grid>*:last-child{border-bottom:0}
+.Role{min-height:0}
+.Head{flex-direction:column;align-items:flex-start}
+.Head p{text-align:left}
+.About{grid-template-columns:1fr}
+.About>div:first-child{border-right:0;padding-bottom:0}
+.AboutBody{padding-top:20px}
+.Cta{flex-direction:column;align-items:flex-start}
+.HeroInner{padding:88px 20px 72px}
+.Hero canvas{-webkit-mask-image:radial-gradient(ellipse 90% 60% at 80% 85%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 90% 60% at 80% 85%,#000 30%,transparent 100%)}
+.HeroInner{padding-bottom:260px}
+.Teams{margin-top:48px}
+}
+@media (max-width:520px){
+.Rules{grid-template-columns:1fr}
+.Rules div{border-right:0!important;border-bottom:1px solid var(--Line)}
+.Rules div:last-child{border-bottom:0}
+footer .Frame{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){.Fade{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="Arrow" viewBox="0 0 10 10"><path d="M1.5 8.5l7-7M3 1.5h5.5V7" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol></svg>
-<main>
-<header class="Show">
-<svg viewBox="170 139 196 235" aria-hidden="true"><path d="M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z"/></svg>
-<h1>Paradox</h1>
-<p class="Role">Roblox programmer and UI designer</p>
+
+<header class="Nav">
+<div class="Frame">
+<a class="Brand" href="#Top"><svg viewBox="170 139 196 235" aria-hidden="true"><path d="M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z"/></svg>Paradox</a>
+<nav class="Links"><a href="#Experience">Experience</a><a href="#Projects">Projects</a><a href="#About">About</a></nav>
+<a class="Button" href="#Contact">Contact</a>
+</div>
 </header>
 
-<div class="Intro Show" style="animation-delay:.08s">
-<p>I started scripting in <b>2021</b> and got hooked because it let me build anything exactly the way I wanted. I learned UI design at the same time, so I build the system and the interface together.</p>
-<p>I specialize in modular infrastructure and low latency networking. Everything I write is PascalCase, compressed and kept completely clean.</p>
+<main class="Frame" id="Top">
+<section class="Hero">
+<canvas id="Field" aria-hidden="true"></canvas>
+<div class="HeroInner">
+<span class="Status Fade"><i></i>Open for commissions</span>
+<h1 class="Fade">Systems and interfaces, built for Roblox.</h1>
+<p class="Lead Fade">I'm Paradox, a full stack programmer and UI designer. I build modular infrastructure, low latency networking and the interfaces on top of them.</p>
+<div class="Actions Fade"><a class="Button Primary" href="#Projects">View projects</a><a class="Button" href="#Contact">Get in touch</a></div>
+<p class="Teams Fade">Team member at <b>REACT Studios</b> and <b>Byte-Breeze</b></p>
 </div>
-
-<section class="Show" style="animation-delay:.16s">
-<h2>Work</h2>
-<ul>
-<li><a class="Row" href="https://www.roblox.com/communities/33061154/Byte-Breeze#!/about" target="_blank" rel="noopener"><span>Byte-Breeze<svg><use href="#Arrow"/></svg></span><span>Lead Programmer and UI Designer</span></a></li>
-<li><a class="Row" href="https://www.roblox.com/communities/17180419/REACT-Studios#!/about" target="_blank" rel="noopener"><span>REACT Studios<svg><use href="#Arrow"/></svg></span><span>Lead Programmer and UI Designer</span></a></li>
-<li><a class="Row" href="https://www.roblox.com/games/6648893133/Breaking-Point-2" target="_blank" rel="noopener"><span>Breaking Point 2<svg><use href="#Arrow"/></svg></span><span>Programmer and VFX</span></a></li>
-</ul>
 </section>
 
-<section class="Show" style="animation-delay:.24s">
-<h2>Projects</h2>
-<ul>
-<li><a class="Row" href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener"><span>LuauChart<svg><use href="#Arrow"/></svg></span><span>Open source chart renderer</span></a></li>
-<li><div class="Row"><span>Realistic Inventory</span><span>Inventory system</span></div></li>
-<li><div class="Row"><span>Vital System</span><span>Player vitals</span></div></li>
-<li><div class="Row"><span>Inkwell</span><span>Custom textboxes</span></div></li>
-</ul>
+<section id="Experience">
+<div class="Head"><div><span class="Label">Experience</span><h2>Where I've worked</h2></div><p>Lead roles in programming and UI design, plus VFX on Breaking Point 2.</p></div>
+<div class="Grid Three">
+<a class="Role Fade" href="https://www.roblox.com/communities/33061154/Byte-Breeze#!/about" target="_blank" rel="noopener"><span class="Label">Studio</span><h3>Byte-Breeze</h3><p>Lead Programmer and UI Designer</p><span class="Go">View on Roblox<svg><use href="#Arrow"/></svg></span></a>
+<a class="Role Fade" href="https://www.roblox.com/communities/17180419/REACT-Studios#!/about" target="_blank" rel="noopener"><span class="Label">Studio</span><h3>REACT Studios</h3><p>Lead Programmer and UI Designer</p><span class="Go">View on Roblox<svg><use href="#Arrow"/></svg></span></a>
+<a class="Role Fade" href="https://www.roblox.com/games/6648893133/Breaking-Point-2" target="_blank" rel="noopener"><span class="Label">Game</span><h3>Breaking Point 2</h3><p>Programmer and VFX</p><span class="Go">Play on Roblox<svg><use href="#Arrow"/></svg></span></a>
+</div>
 </section>
 
-<section class="Show" style="animation-delay:.32s">
-<h2>Contact</h2>
-<p>Open for commissions. Reach me at <a class="Mail" href="mailto:hello@paradoxsoftwork.com">hello@paradoxsoftwork.com</a></p>
+<section id="Projects">
+<div class="Head"><div><span class="Label">Projects</span><h2>Selected systems</h2></div><p>Programmed and designed end to end.</p></div>
+<div class="Grid Two">
+<article class="Project Fade"><div class="Media"><img src="Assets/Inventory.png" alt="Realistic Inventory" loading="lazy" onerror="this.remove()"><span>Inventory</span></div><div class="ProjectText"><div><h3>Realistic Inventory</h3><p>A grounded, realistic inventory system.</p></div><span class="Tag">System</span></div></article>
+<article class="Project Fade"><div class="Media"><img src="Assets/Vitals.png" alt="Vital System" loading="lazy" onerror="this.remove()"><span>Vitals</span></div><div class="ProjectText"><div><h3>Vital System</h3><p>Player vitals with a matching HUD.</p></div><span class="Tag">System</span></div></article>
+<article class="Project Fade"><div class="Media"><img src="Assets/Inkwell.png" alt="Inkwell" loading="lazy" onerror="this.remove()"><span>Inkwell</span></div><div class="ProjectText"><div><h3>Inkwell</h3><p>Custom textboxes for Roblox.</p></div><span class="Tag">Interface</span></div></article>
+<article class="Project Fade"><div class="Media"><img src="Assets/LuauChart.png" alt="LuauChart" loading="lazy" onerror="this.remove()"><span>LuauChart</span></div><div class="ProjectText"><div><h3>LuauChart</h3><p>Graph and chart renderer, free to use.</p></div><a class="Tag" href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener">Open source</a></div></article>
+</div>
 </section>
 
-<footer class="Show" style="animation-delay:.4s">&copy; <span id="Year">2026</span> Paradox Softwork</footer>
+<section class="About" id="About">
+<div><span class="Label">About</span><h2>Clean by default</h2></div>
+<div class="AboutBody">
+<p class="Fade">I started scripting in <b>2021</b> and got hooked because it let me build anything exactly the way I wanted. I learned UI design at the same time, so <b>the system and the interface are one job</b> to me.</p>
+<div class="Rules Fade">
+<div><h4>PascalCase only</h4><p>One naming style in every script.</p></div>
+<div><h4>Compressed code</h4><p>No dead lines, nothing left over.</p></div>
+<div><h4>Modular infrastructure</h4><p>Systems that drop in and out cleanly.</p></div>
+<div><h4>Low latency networking</h4><p>The game answers when the player acts.</p></div>
+</div>
+</div>
+</section>
+
+<section class="Cta" id="Contact">
+<div class="Fade"><h2>Have a project in mind?</h2><p>Systems, interfaces, or both.</p></div>
+<a class="Button Primary Fade" href="mailto:hello@paradoxsoftwork.com">hello@paradoxsoftwork.com<svg><use href="#Arrow"/></svg></a>
+</section>
 </main>
-<script>document.getElementById("Year").textContent=new Date().getFullYear()</script>
+
+<footer><div class="Frame"><span>&copy; <span id="Year">2026</span> Paradox Softwork</span><nav><a href="#Experience">Experience</a><a href="#Projects">Projects</a><a href="#About">About</a></nav></div></footer>
+
+<script>
+(()=>{
+const Reduced=matchMedia("(prefers-reduced-motion:reduce)").matches;
+document.getElementById("Year").textContent=new Date().getFullYear();
+
+const Observer=new IntersectionObserver(Entries=>Entries.forEach(E=>{if(E.isIntersecting){E.target.classList.add("In");Observer.unobserve(E.target)}}),{threshold:.15});
+document.querySelectorAll(".Fade").forEach((El,I)=>{if(El.closest(".Hero"))El.style.transitionDelay=I*.07+"s";Observer.observe(El)});
+
+const Canvas=document.getElementById("Field"),Ctx=Canvas.getContext("2d"),Hero=Canvas.parentElement;
+const Logo=new Path2D("M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z");
+let Gap=16,Dots=[],W=0,H=0,Ratio=1,Mouse={X:-9999,Y:-9999},Start=performance.now(),Visible=true;
+const Build=()=>{
+Ratio=Math.min(devicePixelRatio||1,2);W=Hero.clientWidth;H=Hero.clientHeight;
+Canvas.width=W*Ratio;Canvas.height=H*Ratio;Ctx.setTransform(Ratio,0,0,Ratio,0,0);
+const Wide=W>860,Scale=(Wide?H*.62:Math.min(H*.24,W*.5))/235,OffX=Wide?W*.72-98*Scale:W-196*Scale-28,OffY=Wide?(H-235*Scale)/2:H-235*Scale-36;
+Gap=Wide?16:9;Dots=[];
+for(let Y=Gap/2;Y<H;Y+=Gap)for(let X=Gap/2;X<W;X+=Gap){
+const Inside=Ctx.isPointInPath(Logo,((X-OffX)/Scale+170)*Ratio,((Y-OffY)/Scale+139)*Ratio);
+Dots.push({X,Y,Inside,Delay:Math.hypot(X-(OffX+98*Scale),Y-(OffY+117*Scale))*1.2,Glow:0})}};
+const Draw=Now=>{
+Ctx.clearRect(0,0,W,H);
+const T=Now-Start;
+for(const D of Dots){
+const Dist=Math.hypot(D.X-Mouse.X,D.Y-Mouse.Y),Near=Math.max(0,1-Dist/130);
+D.Glow+=(Near-D.Glow)*.12;
+const Appear=Reduced?1:Math.min(1,Math.max(0,(T-D.Delay*.6)/700));
+let A=(D.Inside?.85:.13)*Appear+D.Glow*.5;
+let Px=D.X,Py=D.Y;
+if(D.Glow>.01&&Dist>0){const Push=D.Glow*6;Px+=(D.X-Mouse.X)/Dist*Push;Py+=(D.Y-Mouse.Y)/Dist*Push}
+Ctx.fillStyle=`rgba(237,237,237,${Math.min(1,A).toFixed(3)})`;
+const R=D.Inside?1.25:1;Ctx.fillRect(Px-R,Py-R,R*2,R*2)}};
+const Loop=Now=>{if(Visible)Draw(Now);requestAnimationFrame(Loop)};
+Build();
+if(Reduced)Draw(performance.now());else requestAnimationFrame(Loop);
+new ResizeObserver(()=>{Build();if(Reduced)Draw(performance.now())}).observe(Hero);
+new IntersectionObserver(E=>{Visible=E[0].isIntersecting}).observe(Hero);
+Hero.addEventListener("pointermove",E=>{const B=Hero.getBoundingClientRect();Mouse.X=E.clientX-B.left;Mouse.Y=E.clientY-B.top});
+Hero.addEventListener("pointerleave",()=>{Mouse.X=Mouse.Y=-9999});
+})();
+</script>
 </body>
 </html>
