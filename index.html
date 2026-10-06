@@ -3,20 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paradox</title>
+<title>Paradox | Roblox Programmer and UI Designer</title>
+<link rel="canonical" href="https://paradoxsoftwork.com/">
 <meta name="description" content="Paradox is a full stack Roblox programmer and UI designer, specializing in modular infrastructure and low latency networking.">
 <meta name="theme-color" content="#09090A">
-<meta property="og:title" content="Paradox">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Paradox | Roblox Programmer and UI Designer">
 <meta property="og:description" content="Full stack Roblox programmer and UI designer.">
 <meta property="og:url" content="https://paradoxsoftwork.com">
 <meta property="og:image" content="https://paradoxsoftwork.com/Assets/Logo.png">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Paradox","url":"https://paradoxsoftwork.com","jobTitle":"Roblox Programmer and UI Designer","knowsAbout":["Luau","Roblox","UI Design","Networking"],"memberOf":[{"@type":"Organization","name":"REACT Studios"},{"@type":"Organization","name":"Byte-Breeze"}]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23000'/%3E%3Cpath d='M170 139H294A72 72 0 0 1 294 283H211V374H170V278A34 34 0 0 1 204 244H294A32.5 32.5 0 0 0 294 179H170Z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="Assets/Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600&family=Funnel+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--Bg:#09090A;--Panel:#0F0F11;--Raised:#151518;--Line:#1F1F23;--Line2:#2C2C31;--Text:#EDEDEA;--Dim:#94948F;--Mute:#5C5C5A;--Accent:#FF6A3D;--Display:"Funnel Display",sans-serif;--Font:"Funnel Sans",-apple-system,"Helvetica Neue",sans-serif;--Mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--Pad:clamp(20px,4vw,64px);--Ease:cubic-bezier(.2,.7,.1,1)}
+:root{--Bg:#09090A;--Panel:#0F0F11;--Raised:#151518;--Line:#1F1F23;--Line2:#2C2C31;--Text:#EDEDEA;--Dim:#94948F;--Mute:#73736F;--Accent:#FF6A3D;--Display:"Funnel Display",sans-serif;--Font:"Funnel Sans",-apple-system,"Helvetica Neue",sans-serif;--Mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--Pad:clamp(20px,4vw,64px);--Ease:cubic-bezier(.2,.7,.1,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
 body{background:var(--Bg);color:var(--Text);font-family:var(--Font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
@@ -24,6 +28,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 img{display:block;max-width:100%}
 ::selection{background:var(--Accent);color:#09090A}
+a:focus-visible,button:focus-visible{outline:2px solid var(--Accent);outline-offset:3px;border-radius:6px}
 .Wrap{padding-left:var(--Pad);padding-right:var(--Pad)}
 .Label{font-family:var(--Mono);font-size:12px;color:var(--Mute)}
 .Label b{font-weight:400;color:var(--Accent)}
@@ -76,7 +81,7 @@ h1 em{font-style:normal;color:var(--Accent)}
 .Crumbs{padding:10px 18px;font-family:var(--Mono);font-size:11.5px;color:var(--Mute);border-bottom:1px solid var(--Line)}
 .Crumbs b{font-weight:400;color:var(--Dim)}
 .Code{display:grid;grid-template-columns:48px 1fr;font-family:var(--Mono);font-size:13px;line-height:1.8;padding:16px 0;height:clamp(380px,48vh,470px)}
-.Gutter{text-align:right;padding-right:16px;color:#36363B;user-select:none;overflow:hidden}
+.Gutter{text-align:right;padding-right:16px;color:#45454B;user-select:none;overflow:hidden}
 .Src{white-space:pre;overflow:auto;padding-right:20px;color:#CBCBC6;tab-size:4;scrollbar-width:none}
 .Src::-webkit-scrollbar{display:none}
 .K{color:#FF8A64}.F{color:#E8CF86}.S{color:#9AD19B}.N{color:#C5A3FF}.T{color:#7CC2E6}.P{color:#6E6E6C}.C{color:#4C4C50;font-style:italic}
@@ -110,14 +115,17 @@ h2 span{color:var(--Mute)}
 .Arrow svg{width:12px;height:12px}
 .Row:hover .Arrow{background:var(--Accent);border-color:var(--Accent);color:#09090A;transform:rotate(45deg)}
 
-.Projects{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.4vw,40px) clamp(16px,1.6vw,24px)}
-.Project .Media{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:radial-gradient(circle,#1B1B1F 1px,transparent 1.3px) 0 0/16px 16px,var(--Panel);border:1px solid var(--Line);display:grid;place-items:center;transition:border-color .3s}
+.Projects{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(40px,4vw,64px) clamp(24px,3vw,48px)}
+.Project{border-top:1px solid var(--Line);padding-top:24px}
+.Project .Num{font-family:var(--Mono);font-size:12px;color:var(--Accent)}
+.Project .Media{display:none;margin-top:16px;position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:radial-gradient(circle,#1B1B1F 1px,transparent 1.3px) 0 0/16px 16px,var(--Panel);border:1px solid var(--Line);place-items:center;transition:border-color .3s}
+.Project.HasMedia .Media{display:grid}
 .Project:hover .Media{border-color:var(--Line2)}
 .Media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--Ease)}
 .Project:hover .Media img{transform:scale(1.025)}
 .Media span{font-family:var(--Mono);font-size:12px;color:var(--Mute)}
-.ProjectText{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:18px}
-.ProjectText h3{font-family:var(--Display);font-size:22px;font-weight:500;letter-spacing:-.025em}
+.ProjectText{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:14px}
+.ProjectText h3{font-family:var(--Display);font-size:clamp(22px,2vw,28px);font-weight:500;letter-spacing:-.025em}
 .ProjectText p{color:var(--Dim);margin-top:2px}
 .ProjectText a,.ProjectText .Kind{flex-shrink:0;font-family:var(--Mono);font-size:12px;color:var(--Mute)}
 .ProjectText a{color:var(--Accent)}
@@ -213,7 +221,7 @@ footer .Wrap{flex-direction:column;align-items:flex-start}
 </div>
 <div class="Crumbs" id="Crumbs"></div>
 <div class="Code"><div class="Gutter" id="Gutter"></div><div class="Src" id="Src"></div></div>
-<div class="EditorFoot"><span><b>&#9679;</b> Luau, strict</span><span id="Pos">Ln 1, Col 1</span></div>
+<div class="EditorFoot"><span><b>&#9679;</b> Luau</span><span id="Pos">Ln 1, Col 1</span></div>
 </div>
 </div>
 </section>
@@ -230,19 +238,19 @@ footer .Wrap{flex-direction:column;align-items:flex-start}
 </section>
 
 <section class="Block Wrap" id="Projects">
-<div class="Head Fade"><div><span class="Label"><b>02</b> / Projects</span><h2>Selected systems.</h2></div><p>Programmed and designed end to end.</p></div>
+<div class="Head Fade"><div><span class="Label"><b>02</b> / Projects</span><h2>Selected systems.</h2></div><p>Each one programmed and designed by me, from the networking to the last pixel.</p></div>
 <div class="Projects">
-<article class="Project Fade"><div class="Media"><img src="Assets/Inventory.png" alt="Realistic Inventory" loading="lazy" onerror="this.remove()"><span>Inventory.luau</span></div><div class="ProjectText"><div><h3>Realistic Inventory</h3><p>A grounded, realistic inventory system.</p></div><span class="Kind">System</span></div></article>
-<article class="Project Fade"><div class="Media"><img src="Assets/Vitals.png" alt="Vital System" loading="lazy" onerror="this.remove()"><span>Vitals.luau</span></div><div class="ProjectText"><div><h3>Vital System</h3><p>Player vitals with a matching HUD.</p></div><span class="Kind">System</span></div></article>
-<article class="Project Fade"><div class="Media"><img src="Assets/Inkwell.png" alt="Inkwell" loading="lazy" onerror="this.remove()"><span>Inkwell.luau</span></div><div class="ProjectText"><div><h3>Inkwell</h3><p>Custom textboxes for Roblox.</p></div><span class="Kind">Interface</span></div></article>
-<article class="Project Fade"><div class="Media"><img src="Assets/LuauChart.png" alt="LuauChart" loading="lazy" onerror="this.remove()"><span>LuauChart.luau</span></div><div class="ProjectText"><div><h3>LuauChart</h3><p>Graph and chart renderer, open source.</p></div><a href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener">DevForum</a></div></article>
+<article class="Project Fade"><span class="Num">01</span><div class="Media"><img src="Assets/Inventory.png" alt="Realistic Inventory" onload="this.closest('.Project').classList.add('HasMedia')" onerror="this.remove()"></div><div class="ProjectText"><div><h3>Realistic Inventory</h3><p>A grounded, realistic inventory system with its own interface.</p></div><span class="Kind">System</span></div></article>
+<article class="Project Fade"><span class="Num">02</span><div class="Media"><img src="Assets/Vitals.png" alt="Vital System" onload="this.closest('.Project').classList.add('HasMedia')" onerror="this.remove()"></div><div class="ProjectText"><div><h3>Vital System</h3><p>Player vitals, with the logic and the HUD designed together.</p></div><span class="Kind">System</span></div></article>
+<article class="Project Fade"><span class="Num">03</span><div class="Media"><img src="Assets/Inkwell.png" alt="Inkwell" onload="this.closest('.Project').classList.add('HasMedia')" onerror="this.remove()"></div><div class="ProjectText"><div><h3>Inkwell</h3><p>Custom textboxes for Roblox, built to replace the default TextBox.</p></div><span class="Kind">Interface</span></div></article>
+<article class="Project Fade"><span class="Num">04</span><div class="Media"><img src="Assets/LuauChart.png" alt="LuauChart" onload="this.closest('.Project').classList.add('HasMedia')" onerror="this.remove()"></div><div class="ProjectText"><div><h3>LuauChart</h3><p>An open source graph and chart renderer for Roblox.</p></div><a href="https://devforum.roblox.com/t/luauchart-graph-chart-renderer/4864869" target="_blank" rel="noopener">Read on DevForum</a></div></article>
 </div>
 </section>
 
 <section class="Block Wrap" id="About">
 <div class="About">
 <div class="Fade"><span class="Label"><b>03</b> / About</span><h2>Clean by <span>default.</span></h2></div>
-<p class="Big Fade">I started scripting in 2021 and got hooked because it let me build anything exactly the way I wanted. <span>I learned UI design at the same time, so the system and the interface have always been one job to me.</span></p>
+<p class="Big Fade">I started scripting in 2021 and got hooked because it let me build anything exactly the way I wanted. <span>I learned professional UI design at the same time, so the system and the interface have always been one job to me. I keep my workspace and my scripts completely clean.</span></p>
 </div>
 <div class="Principles">
 <div class="Principle Fade"><span class="Label">A</span><h4>PascalCase only</h4><p>One naming style in every script, so each file reads like the last.</p></div>
@@ -274,7 +282,7 @@ const Observer=new IntersectionObserver(E=>E.forEach(X=>{if(X.isIntersecting){X.
 document.querySelectorAll(".Fade").forEach((El,I)=>{if(El.closest(".Hero"))El.style.transitionDelay=I*.08+"s";Observer.observe(El)});
 
 const Keywords=new Set("local function return if then else elseif end for in do while not and or nil true false self type export continue break".split(" "));
-const Types=new Set("Player number string boolean buffer RemoteEvent".split(" "));
+const Types=new Set("Player number string boolean any buffer RemoteEvent".split(" "));
 const Esc=S=>S.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const Highlight=Line=>{
 const Rx=/(--.*$)|("[^"]*")|(\b\d+(?:\.\d+)?\b)|([A-Za-z_][A-Za-z0-9_]*)(\s*\()?|([^\w\s])/g;
@@ -289,50 +297,49 @@ else Out+=`<span class="P">${Esc(M[6])}</span>`}
 return Out+Esc(Line.slice(Last))};
 
 const Files=[
-{Name:"Inventory.luau",Path:"ServerScriptService / Modules",Code:`local Inventory = {}
+{Name:"Inventory.luau",Path:"ServerScriptService / Modules",Code:`local Network = require(script.Parent.Network)
+
+local Inventory = {}
 Inventory.__index = Inventory
 
 function Inventory.New(Owner: Player, Capacity: number)
-	local Self = setmetatable({}, Inventory)
-	Self.Owner, Self.Capacity = Owner, Capacity
-	Self.Slots, Self.Weight = {}, 0
+	local Self = setmetatable({Owner = Owner, Slots = {}}, Inventory)
+	Self.Capacity, Self.Weight = Capacity, 0
 	return Self
 end
 
-function Inventory:Add(Item, Amount: number): boolean
-	local Total = self.Weight + Item.Weight * Amount
-	if Total > self.Capacity then return false end
-	local Slot = self:Find(Item.Id) or self:Free()
+function Inventory.Add(Self, Item, Amount: number): boolean
+	local Total = Self.Weight + Item.Weight * Amount
+	local Slot = Total <= Self.Capacity and Self:Claim(Item.Id)
 	if not Slot then return false end
-	Slot.Item = Item
-	Slot.Amount = (Slot.Amount or 0) + Amount
-	self.Weight = Total
-	Network.Push(self.Owner, "Inventory", Slot)
+	Slot.Item, Slot.Amount = Item, (Slot.Amount or 0) + Amount
+	Self.Weight = Total
+	Network.Push(Self.Owner, "Inventory", Slot)
 	return true
 end
 
 return Inventory`},
-{Name:"Network.luau",Path:"ReplicatedStorage / Shared",Code:`local Network = {Queue = {}}
+{Name:"Network.luau",Path:"ReplicatedStorage / Shared",Code:`local RunService = game:GetService("RunService")
+local Remote = script.Parent.Remotes.Batch :: RemoteEvent
 
-function Network.Push(Target: Player, Channel: string, Data)
-	local Bucket = Network.Queue[Target] or {}
-	Network.Queue[Target] = Bucket
-	table.insert(Bucket, {Channel, Data})
-end
+local Network, Queue = {}, {}
 
-function Network.Flush(Remote: RemoteEvent)
-	for Target, Bucket in Network.Queue do
-		Remote:FireClient(Target, Bucket)
-	end
-	table.clear(Network.Queue)
+function Network.Push(Target: Player, Channel: string, Data: any)
+	Queue[Target] = Queue[Target] or {}
+	table.insert(Queue[Target], {Channel, Data})
 end
 
 RunService.Heartbeat:Connect(function()
-	Network.Flush(Remotes.Batch)
+	for Target, Bucket in Queue do
+		Remote:FireClient(Target, Bucket)
+	end
+	table.clear(Queue)
 end)
 
 return Network`},
-{Name:"Vitals.luau",Path:"ServerScriptService / Modules",Code:`local Vitals = {}
+{Name:"Vitals.luau",Path:"ServerScriptService / Modules",Code:`local Network = require(script.Parent.Network)
+
+local Vitals = {}
 Vitals.__index = Vitals
 
 function Vitals.New(Owner: Player)
@@ -342,17 +349,16 @@ function Vitals.New(Owner: Player)
 	return Self
 end
 
-function Vitals:Set(Key: string, Value: number)
+function Vitals.Set(Self, Key: string, Value: number)
 	local Clamped = math.clamp(Value, 0, 100)
-	if self[Key] == Clamped then return end
-	self[Key] = Clamped
-	self.Dirty[Key] = Clamped
+	if Self[Key] == Clamped then return end
+	Self[Key], Self.Dirty[Key] = Clamped, Clamped
 end
 
-function Vitals:Sync()
-	if next(self.Dirty) == nil then return end
-	Network.Push(self.Owner, "Vitals", self.Dirty)
-	self.Dirty = {}
+function Vitals.Sync(Self)
+	if not next(Self.Dirty) then return end
+	Network.Push(Self.Owner, "Vitals", Self.Dirty)
+	Self.Dirty = {}
 end
 
 return Vitals`}];
@@ -386,10 +392,11 @@ const Start=new IntersectionObserver(E=>{if(E[0].isIntersecting){setTimeout(()=>
 const Canvas=Q("#Field"),Ctx=Canvas.getContext("2d"),Hero=Canvas.parentElement;
 let Dots=[],W=0,H=0,Mouse={X:-9999,Y:-9999},Visible=true;
 const Build=()=>{const R=Math.min(devicePixelRatio||1,2);W=Hero.clientWidth;H=Hero.clientHeight;Canvas.width=W*R;Canvas.height=H*R;Ctx.setTransform(R,0,0,R,0,0);Dots=[];for(let Y=12;Y<H;Y+=24)for(let X=12;X<W;X+=24)Dots.push({X,Y,G:0})};
-const Draw=()=>{Ctx.clearRect(0,0,W,H);for(const D of Dots){const Dx=D.X-Mouse.X,Dy=D.Y-Mouse.Y,Dist=Math.hypot(Dx,Dy),Near=Math.max(0,1-Dist/160);D.G+=(Near-D.G)*.1;let X=D.X,Y=D.Y;if(D.G>.01&&Dist>0){X+=Dx/Dist*D.G*7;Y+=Dy/Dist*D.G*7}Ctx.fillStyle=D.G>.05?`rgba(255,${Math.round(237-D.G*131)},${Math.round(234-D.G*173)},${(.1+D.G*.7).toFixed(3)})`:"rgba(237,237,234,.1)";const S=1+D.G*.6;Ctx.fillRect(X-S,Y-S,S*2,S*2)}};
-const Loop=()=>{if(Visible)Draw();requestAnimationFrame(Loop)};
+let Active=true;
+const Draw=()=>{Ctx.clearRect(0,0,W,H);Active=false;for(const D of Dots){const Dx=D.X-Mouse.X,Dy=D.Y-Mouse.Y,Dist=Math.hypot(Dx,Dy),Near=Math.max(0,1-Dist/160);D.G+=(Near-D.G)*.1;if(D.G>.004)Active=true;let X=D.X,Y=D.Y;if(D.G>.01&&Dist>0){X+=Dx/Dist*D.G*7;Y+=Dy/Dist*D.G*7}Ctx.fillStyle=D.G>.05?`rgba(255,${Math.round(237-D.G*131)},${Math.round(234-D.G*173)},${(.1+D.G*.7).toFixed(3)})`:"rgba(237,237,234,.1)";const S=1+D.G*.6;Ctx.fillRect(X-S,Y-S,S*2,S*2)}};
+const Loop=()=>{if(Visible&&(Active||Mouse.X>-9999))Draw();requestAnimationFrame(Loop)};
 Build();Reduced?Draw():requestAnimationFrame(Loop);
-new ResizeObserver(()=>{Build();if(Reduced)Draw()}).observe(Hero);
+new ResizeObserver(()=>{Build();Draw()}).observe(Hero);
 new IntersectionObserver(E=>{Visible=E[0].isIntersecting}).observe(Hero);
 Hero.addEventListener("pointermove",E=>{const B=Hero.getBoundingClientRect();Mouse.X=E.clientX-B.left;Mouse.Y=E.clientY-B.top});
 Hero.addEventListener("pointerleave",()=>{Mouse.X=Mouse.Y=-9999});
